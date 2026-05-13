@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>POLYAS MEDIA — Визуальный капитал для бизнеса</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+  :root{--bg:#0A0A0A;--bg-1:#111111;--bg-2:#181818;--lime:#39FF14;--lime-2:#2ECC10;--lime-dim:rgba(57,255,20,0.65);--lime-glow:rgba(57,255,20,0.18);--lime-gs:rgba(57,255,20,0.07);--lime-bd:rgba(57,255,20,0.28);--lime-bd-h:rgba(57,255,20,0.65);--fg:#F0F0F0;--fg-2:#888888;--fg-3:#444444;--fg-4:#222222;--glass-bg:rgba(255,255,255,0.035);--glass-bd:rgba(57,255,20,0.13);--ease:cubic-bezier(0.22,1,0.36,1);--ease-back:cubic-bezier(0.34,1.56,0.64,1);--r-sm:12px;--r-md:18px;--r-lg:26px;--r-xl:36px}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Inter",sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--lime);color:#000}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;outline:none}
+  img{display:block;max-width:100%}
+  body::before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(57,255,20,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,20,0.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+  #cvs{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.38}
+  #ambient{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .amb-orb{position:absolute;border-radius:50%;filter:blur(110px);will-change:transform}
+  .amb-1{top:-10%;left:-8%;width:min(900px,70vw);height:min(900px,70vw);background:radial-gradient(circle,rgba(57,255,20,0.06) 0%,transparent 58%);animation:ambDrift 28s ease-in-out infinite alternate}
+  .amb-2{bottom:0;right:-10%;width:min(700px,55vw);height:min(700px,55vw);background:radial-gradient(circle,rgba(40,190,15,0.04) 0%,transparent 55%);animation:ambDrift 35s ease-in-out infinite alternate-reverse}
+  @keyframes ambDrift{from{transform:translate(0,0) scale(1)}to{transform:translate(60px,48px) scale(1.1)}}
+  #cursor-glow{position:fixed;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(57,255,20,0.03) 0%,transparent 65%);pointer-events:none;transform:translate(-50%,-50%);z-index:9999}
+  .wrap{position:relative;z-index:1}
+  .container{width:100%;max-width:1200px;margin:0 auto;padding:0 48px}
+  .r{opacity:0;transform:translateY(28px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+  .r.in{opacity:1;transform:translateY(0)}
+  .r-d1{transition-delay:.08s}.r-d2{transition-delay:.16s}.r-d3{transition-delay:.24s}
+  .r-d4{transition-delay:.32s}.r-d5{transition-delay:.40s}.r-d6{transition-delay:.48s}
+  h1,h2,h3{font-family:"Unbounded",sans-serif;letter-spacing:-.03em;line-height:1.08}
+  h1{font-size:clamp(36px,5.8vw,76px);font-weight:900}
+  h2{font-size:clamp(24px,3.6vw,48px);font-weight:800}
+  h3{font-size:clamp(16px,2vw,22px);font-weight:700}
+  .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:100px;background:rgba(57,255,20,0.07);border:1px solid rgba(57,255,20,0.28);font-family:"Unbounded",sans-serif;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--lime)}
+  .chip-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px var(--lime);animation:chipPulse 2s ease-in-out infinite}
+  @keyframes chipPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.75)}}
+  .neon{color:var(--lime);text-shadow:0 0 22px rgba(57,255,20,0.7),0 0 44px rgba(57,255,20,0.3)}
+  .section-header{text-align:center;margin-bottom:72px}
+  .section-header .chip{margin-bottom:20px}
+  .section-header h2{margin-bottom:14px}
+  .section-header p{font-size:16px;color:var(--fg-2);line-height:1.75;max-width:500px;margin:0 auto}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:0 28px;height:52px;border-radius:100px;font-family:"Unbounded",sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;transition:transform .3s var(--ease),box-shadow .3s,border-color .3s,background .25s;position:relative;white-space:nowrap}
+  .btn svg{width:17px;height:17px;flex-shrink:0}
+  .btn-lime{background:linear-gradient(135deg,rgba(57,255,20,0.14),rgba(57,255,20,0.05));border:1.5px solid rgba(57,255,20,0.48);color:var(--lime);box-shadow:0 0 14px rgba(57,255,20,0.14),inset 0 1px 0 rgba(255,255,255,0.07)}
+  .btn-lime:hover{box-shadow:0 0 30px rgba(57,255,20,0.52),0 0 60px rgba(57,255,20,0.2),inset 0 1px 0 rgba(255,255,255,0.1);border-color:rgba(57,255,20,0.88);transform:translateY(-3px)}
+  .btn-solid{background:var(--lime);color:#000;box-shadow:0 0 20px rgba(57,255,20,0.35)}
+  .btn-solid:hover{box-shadow:0 0 36px rgba(57,255,20,0.65),0 0 70px rgba(57,255,20,0.25);transform:translateY(-3px)}
+  .btn-ghost{background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.12);color:var(--fg)}
+  .btn-ghost:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.22);transform:translateY(-2px)}
+  .btn-full{width:100%;justify-content:center}
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;transition:background .4s,backdrop-filter .4s}
+  nav.scrolled{background:rgba(10,10,10,0.92);backdrop-filter:blur(22px) saturate(1.4);-webkit-backdrop-filter:blur(22px) saturate(1.4);border-bottom:1px solid rgba(57,255,20,0.07);box-shadow:0 1px 0 rgba(57,255,20,0.04)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+  .nav-logo{font-family:"Unbounded",sans-serif;font-size:15px;font-weight:900;letter-spacing:.04em;user-select:none}
+  .nav-logo span{color:var(--lime);text-shadow:0 0 14px rgba(57,255,20,0.5)}
+  .nav-links{display:flex;align-items:center;gap:36px;list-style:none}
+  .nav-links a{font-size:12px;font-weight:500;letter-spacing:.05em;color:var(--fg-2);transition:color .2s;position:relative}
+  .nav-links a::after{content:"";position:absolute;bottom:-4px;left:0;right:100%;height:1px;background:var(--lime);transition:right .3s var(--ease)}
+  .nav-links a:hover{color:var(--fg)}.nav-links a:hover::after{right:0}
+  .nav-right{display:flex;align-items:center;gap:14px}
+  .lang-switch{display:flex;align-items:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:100px;padding:3px}
+  .lang-btn{padding:4px 13px;font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--fg-3);border-radius:100px;transition:all .22s}
+  .lang-btn.active{background:rgba(57,255,20,0.12);color:var(--lime);border:1px solid rgba(57,255,20,0.3)}
+  .lang-btn:hover:not(.active){color:var(--fg-2)}
+  .nav-cta{padding:0 20px;height:38px;background:var(--lime);border-radius:100px;font-family:"Unbounded",sans-serif;font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#000;transition:all .25s var(--ease);box-shadow:0 0 14px rgba(57,255,20,0.3);display:inline-flex;align-items:center;white-space:nowrap}
+  .nav-cta:hover{box-shadow:0 0 30px rgba(57,255,20,0.65),0 0 60px rgba(57,255,20,0.25);transform:translateY(-1px)}
+  #hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding-top:70px}
+  .hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 72% 62% at 50% 32%,rgba(57,255,20,0.07) 0%,transparent 58%),radial-gradient(ellipse 36% 44% at 78% 72%,rgba(57,255,20,0.04) 0%,transparent 50%),var(--bg)}
+  .hero-scan{position:absolute;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0px,transparent 3px,rgba(0,0,0,0.045) 3px,rgba(0,0,0,0.045) 4px)}
+  #hero::after{content:"";position:absolute;bottom:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(57,255,20,0.22) 35%,rgba(57,255,20,0.22) 65%,transparent);pointer-events:none;z-index:2}
+  .hero-inner{position:relative;z-index:2;text-align:center;padding:100px 0 90px}
+  .hero-inner > .chip{margin-bottom:34px}
+  .hero-h1{margin-bottom:22px}
+  .hero-h1 .line-1{display:block;color:var(--fg)}
+  .hero-h1 .line-2{display:block;color:var(--lime);text-shadow:0 0 28px rgba(57,255,20,0.65),0 0 56px rgba(57,255,20,0.28)}
+  .hero-sub{font-size:clamp(14px,1.7vw,17px);color:var(--fg-2);line-height:1.78;max-width:560px;margin:0 auto 52px}
+  .hero-cta{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:80px}
+  .hero-stats{display:flex;align-items:stretch;max-width:660px;margin:0 auto;background:rgba(255,255,255,0.025);border:1px solid rgba(57,255,20,0.1);border-radius:var(--r-lg);backdrop-filter:blur(18px);overflow:hidden}
+  .stat-item{flex:1;min-width:150px;padding:28px 30px;text-align:center;border-right:1px solid rgba(57,255,20,0.07)}
+  .stat-item:last-child{border-right:none}
+  .stat-val{font-family:"Unbounded",sans-serif;font-size:21px;font-weight:900;color:var(--lime);letter-spacing:-.02em;line-height:1;margin-bottom:8px;text-shadow:0 0 14px rgba(57,255,20,0.38)}
+  .stat-label{font-size:10px;font-weight:500;color:var(--fg-2);letter-spacing:.08em;text-transform:uppercase}
+  section{padding:120px 0;position:relative}
+  section + section::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);height:1px;width:36%;background:linear-gradient(90deg,transparent,rgba(57,255,20,0.26),transparent);pointer-events:none}
+  #about{background:var(--bg-1)}
+  .about-grid{display:grid;grid-template-columns:1fr 420px;gap:80px;align-items:center}
+  .about-chip{margin-bottom:24px}
+  .about-statement{display:inline-block;font-size:clamp(20px,2.8vw,32px);font-weight:800;font-family:"Unbounded",sans-serif;letter-spacing:-.03em;line-height:1.2;margin-bottom:28px;background:linear-gradient(135deg,var(--fg) 0%,rgba(57,255,20,0.85) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .about-body{font-size:15px;color:var(--fg-2);line-height:1.85;margin-bottom:32px}
+  .about-body p+p{margin-top:16px}
+  .about-facts{display:flex;gap:32px;flex-wrap:wrap;padding-top:28px;border-top:1px solid rgba(57,255,20,0.08)}
+  .about-fact-num{font-family:"Unbounded",sans-serif;font-size:32px;font-weight:900;color:var(--lime);letter-spacing:-.04em;text-shadow:0 0 16px rgba(57,255,20,0.35);line-height:1;margin-bottom:6px}
+  .about-fact-label{font-size:12px;color:var(--fg-3);line-height:1.5;max-width:160px}
+  .founder-card{background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:var(--r-xl);overflow:hidden;backdrop-filter:blur(22px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 32px 80px rgba(0,0,0,0.35)}
+  .founder-photo{width:100%;aspect-ratio:3/2;background:var(--bg-2);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .founder-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+  .founder-photo::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(57,255,20,0.06) 0%,transparent 55%),repeating-linear-gradient(-45deg,transparent 0px,transparent 14px,rgba(57,255,20,0.018) 14px,rgba(57,255,20,0.018) 15px);z-index:1}
+  .founder-photo::after{content:"";position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,rgba(10,10,10,0.6),transparent);z-index:1}
+  .founder-photo-label{font-family:"Unbounded",sans-serif;font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(57,255,20,0.45);position:relative;z-index:2}
+  .founder-info{padding:28px 30px 30px}
+  .founder-tag{font-family:"Unbounded",sans-serif;font-size:8px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);margin-bottom:8px}
+  .founder-name{font-family:"Unbounded",sans-serif;font-size:20px;font-weight:900;color:var(--fg);letter-spacing:-.025em;margin-bottom:4px}
+  .founder-role{font-size:13px;color:var(--fg-2);margin-bottom:14px}
+  .founder-bio{font-size:13px;color:var(--fg-3);line-height:1.7;margin-bottom:20px}
+  .founder-links{display:flex;gap:10px;flex-wrap:wrap}
+  .founder-link{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:var(--r-sm);background:rgba(57,255,20,0.06);border:1px solid rgba(57,255,20,0.2);font-family:"Unbounded",sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;color:rgba(57,255,20,0.8);transition:all .25s var(--ease)}
+  .founder-link:hover{background:rgba(57,255,20,0.12);border-color:rgba(57,255,20,0.45);color:var(--lime);box-shadow:0 0 16px rgba(57,255,20,0.12);transform:translateY(-2px)}
+  .founder-link svg{width:14px;height:14px;flex-shrink:0}
+  #services{background:var(--bg)}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .svc-card{position:relative;background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:var(--r-lg);padding:40px 36px;display:flex;flex-direction:column;backdrop-filter:blur(22px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 24px 60px rgba(0,0,0,0.3);transition:border-color .35s,box-shadow .35s,transform .4s var(--ease);overflow:hidden}
+  .svc-card::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 44% at 50% 0%,rgba(57,255,20,0.07) 0%,transparent 60%);opacity:0;transition:opacity .35s;pointer-events:none}
+  .svc-card:hover{border-color:rgba(57,255,20,0.42);box-shadow:inset 0 1px 0 rgba(255,255,255,0.08),0 24px 60px rgba(0,0,0,0.5),0 0 40px rgba(57,255,20,0.1),0 0 80px rgba(57,255,20,0.05);transform:translateY(-7px) scale(1.018)}
+  .svc-card:hover::before{opacity:1}
+  .svc-icon{width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:14px;background:rgba(57,255,20,0.08);border:1px solid rgba(57,255,20,0.2);margin-bottom:24px;font-size:22px}
+  .svc-tag{font-family:"Unbounded",sans-serif;font-size:8px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(57,255,20,0.5);margin-bottom:12px}
+  .svc-title{font-family:"Unbounded",sans-serif;font-size:22px;font-weight:800;color:var(--fg);letter-spacing:-.025em;margin-bottom:14px}
+  .svc-desc{font-size:14px;color:var(--fg-2);line-height:1.75;margin-bottom:22px;flex:1}
+  .svc-items{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:26px}
+  .svc-items li{font-size:12px;color:var(--fg-2);display:flex;align-items:center;gap:10px}
+  .svc-items li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--lime);box-shadow:0 0 6px var(--lime);flex-shrink:0}
+  .svc-usp{display:inline-flex;align-items:center;gap:9px;padding:11px 18px;border-radius:14px;background:linear-gradient(135deg,rgba(57,255,20,0.15),rgba(57,255,20,0.05));border:1.5px solid rgba(57,255,20,0.45);margin-top:auto;box-shadow:0 0 22px rgba(57,255,20,0.12)}
+  .svc-usp-icon{font-size:17px}
+  .svc-usp-text{font-family:"Unbounded",sans-serif;font-size:12px;font-weight:800;color:var(--lime);letter-spacing:.03em;text-shadow:0 0 12px rgba(57,255,20,0.5)}
+  .svc-card.premium{border-color:rgba(57,255,20,0.2);background:linear-gradient(145deg,rgba(57,255,20,0.05) 0%,rgba(255,255,255,0.025) 100%)}
+  .svc-card.premium::after{content:"PREMIUM";position:absolute;top:26px;right:26px;font-family:"Unbounded",sans-serif;font-size:8px;font-weight:800;letter-spacing:.2em;color:var(--lime);padding:4px 10px;border-radius:100px;background:rgba(57,255,20,0.08);border:1px solid rgba(57,255,20,0.22)}
+  /* Thumbnail carousel */
+  .thumb-carousel-wrap{margin-top:32px;overflow:hidden;position:relative;border-radius:var(--r-md)}
+  .thumb-carousel-wrap::before,.thumb-carousel-wrap::after{content:"";position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+  .thumb-carousel-wrap::before{left:0;background:linear-gradient(to right,var(--bg),transparent)}
+  .thumb-carousel-wrap::after{right:0;background:linear-gradient(to left,var(--bg),transparent)}
+  .thumb-track{display:flex;gap:12px;animation:thumbScroll 32s linear infinite;width:max-content}
+  .thumb-track:hover{animation-play-state:paused}
+  @keyframes thumbScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .thumb-item{width:200px;height:112px;border-radius:10px;overflow:hidden;flex-shrink:0;border:1px solid rgba(57,255,20,0.12);position:relative;background:var(--bg-2)}
+  .thumb-item img{width:100%;height:100%;object-fit:cover;display:block}
+  .thumb-item::after{content:"THUMBNAIL";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:"Unbounded",sans-serif;font-size:7px;font-weight:700;letter-spacing:.2em;color:rgba(57,255,20,0.3);background:repeating-linear-gradient(-45deg,transparent,transparent 10px,rgba(57,255,20,0.015) 10px,rgba(57,255,20,0.015) 11px)}
+  .thumb-item img[src]:not([src=""]){display:block}
+  #process{background:var(--bg-1)}
+  .process-wrap{max-width:920px;margin:0 auto}
+  .process-steps{display:flex;border:1px solid rgba(57,255,20,0.1);border-radius:var(--r-md);background:rgba(255,255,255,0.02);backdrop-filter:blur(16px);overflow:hidden;margin-bottom:28px}
+  .step-btn{flex:1;padding:22px 14px;display:flex;flex-direction:column;align-items:center;gap:7px;border-right:1px solid rgba(57,255,20,0.07);background:transparent;transition:background .25s;cursor:pointer;position:relative}
+  .step-btn:last-child{border-right:none}
+  .step-btn::after{content:"";position:absolute;bottom:0;left:0;right:100%;height:2px;background:var(--lime);transition:right .38s var(--ease);box-shadow:0 0 8px var(--lime)}
+  .step-num{font-family:"Unbounded",sans-serif;font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--fg-3);transition:color .25s}
+  .step-title{font-size:11px;font-weight:600;color:var(--fg-3);text-align:center;line-height:1.3;transition:color .25s}
+  .step-btn:hover{background:rgba(57,255,20,0.04)}.step-btn:hover .step-num,.step-btn:hover .step-title{color:var(--fg-2)}
+  .step-btn.active{background:rgba(57,255,20,0.065)}.step-btn.active::after{right:0}.step-btn.active .step-num{color:var(--lime)}.step-btn.active .step-title{color:var(--fg)}
+  .process-panels{position:relative}
+  .process-panel{display:none;position:relative;background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:var(--r-lg);padding:50px 56px;backdrop-filter:blur(22px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.05),0 24px 60px rgba(0,0,0,0.28);overflow:hidden}
+  .process-panel.active{display:block;animation:panelIn .42s var(--ease) forwards}
+  @keyframes panelIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  .panel-bg-num{position:absolute;right:44px;top:16px;font-family:"Unbounded",sans-serif;font-size:100px;font-weight:900;line-height:1;color:rgba(57,255,20,0.06);pointer-events:none;user-select:none;letter-spacing:-.04em}
+  .panel-step-label{font-family:"Unbounded",sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);margin-bottom:14px}
+  .panel-title{font-family:"Unbounded",sans-serif;font-size:clamp(22px,3vw,34px);font-weight:800;color:var(--fg);margin-bottom:16px;letter-spacing:-.025em}
+  .panel-desc{font-size:15px;line-height:1.82;color:var(--fg-2);max-width:560px}
+  .panel-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px}
+  .panel-tag{padding:6px 14px;border-radius:100px;background:rgba(57,255,20,0.07);border:1px solid rgba(57,255,20,0.2);font-size:11px;font-weight:500;color:rgba(57,255,20,0.8)}
+  #pricing{background:var(--bg)}
+  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
+  .price-card{position:relative;background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:var(--r-lg);padding:40px 36px;backdrop-filter:blur(22px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.06),0 24px 60px rgba(0,0,0,0.3);transition:transform .4s var(--ease),box-shadow .35s,border-color .3s;overflow:hidden}
+  .price-card::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 40% at 50% 0%,rgba(57,255,20,0.06) 0%,transparent 60%);opacity:0;transition:opacity .35s;pointer-events:none}
+  .price-card:hover{transform:translateY(-6px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.08),0 24px 64px rgba(0,0,0,0.45),0 0 36px rgba(57,255,20,0.08)}
+  .price-card:hover::before{opacity:1}
+  .price-card.featured{border-color:rgba(57,255,20,0.45);background:linear-gradient(145deg,rgba(57,255,20,0.06) 0%,rgba(255,255,255,0.03) 100%);box-shadow:0 0 50px rgba(57,255,20,0.18),inset 0 1px 0 rgba(57,255,20,0.15),0 24px 60px rgba(0,0,0,0.35);animation:pricePulse 4s ease-in-out infinite alternate}
+  .price-card.featured:hover{box-shadow:0 0 70px rgba(57,255,20,0.3),inset 0 1px 0 rgba(57,255,20,0.2),0 24px 80px rgba(0,0,0,0.5);transform:translateY(-8px)}
+  @keyframes pricePulse{from{box-shadow:0 0 40px rgba(57,255,20,0.15),inset 0 1px 0 rgba(57,255,20,0.12),0 24px 60px rgba(0,0,0,0.35)}to{box-shadow:0 0 60px rgba(57,255,20,0.25),inset 0 1px 0 rgba(57,255,20,0.18),0 24px 80px rgba(0,0,0,0.4)}}
+  .price-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:100px;background:rgba(57,255,20,0.07);border:1px solid rgba(57,255,20,0.22);font-family:"Unbounded",sans-serif;font-size:8px;font-weight:700;letter-spacing:.16em;color:rgba(57,255,20,0.75);margin-bottom:22px}
+  .price-badge.hot{background:rgba(57,255,20,0.12);border-color:rgba(57,255,20,0.45);color:var(--lime);box-shadow:0 0 10px rgba(57,255,20,0.15)}
+  .price-service{font-family:"Unbounded",sans-serif;font-size:22px;font-weight:800;color:var(--fg);letter-spacing:-.025em;margin-bottom:10px}
+  .price-tagline{font-size:13px;color:var(--fg-2);line-height:1.65;margin-bottom:28px}
+  .price-amount{font-family:"Unbounded",sans-serif;font-size:38px;font-weight:900;color:var(--lime);letter-spacing:-.04em;text-shadow:0 0 16px rgba(57,255,20,0.35);margin-bottom:4px;line-height:1}
+  .price-period{font-size:12px;color:var(--fg-3);margin-bottom:28px;letter-spacing:.04em}
+  .price-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(57,255,20,0.12),transparent);margin-bottom:24px}
+  .price-features{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:32px}
+  .price-features li{font-size:13px;color:var(--fg-2);display:flex;align-items:flex-start;gap:10px;line-height:1.5}
+  .price-features li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--lime);box-shadow:0 0 6px var(--lime);flex-shrink:0;margin-top:6px}
+  .featured .price-features li{color:var(--fg)}
+  .featured-label{position:absolute;top:24px;right:24px;font-family:"Unbounded",sans-serif;font-size:8px;font-weight:800;letter-spacing:.2em;color:var(--lime);padding:4px 10px;border-radius:100px;background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.3)}
+  #cases{background:var(--bg-1)}
+  .cases-tabs{display:flex;align-items:center;gap:6px;margin-bottom:52px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:100px;padding:5px;width:fit-content;margin-left:auto;margin-right:auto}
+  .cases-tab{padding:10px 34px;border-radius:100px;font-family:"Unbounded",sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);transition:all .3s var(--ease);cursor:pointer}
+  .cases-tab.active{background:rgba(57,255,20,0.1);border:1px solid rgba(57,255,20,0.35);color:var(--lime);box-shadow:0 0 16px rgba(57,255,20,0.11)}
+  .cases-tab:hover:not(.active){color:var(--fg-2)}
+  .cases-panel{display:none}.cases-panel.active{display:block}
+  .cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .case-card{background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:var(--r-lg);overflow:hidden;backdrop-filter:blur(18px);transition:transform .4s var(--ease),border-color .3s,box-shadow .35s;cursor:pointer}
+  .case-card:hover{transform:translateY(-7px) scale(1.016);border-color:rgba(57,255,20,0.4);box-shadow:0 24px 64px rgba(0,0,0,0.5),0 0 40px rgba(57,255,20,0.1)}
+  .case-thumb{width:100%;aspect-ratio:16/9;background:var(--bg-2);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .case-thumb img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+  .case-thumb-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(57,255,20,0.06) 0%,transparent 55%),repeating-linear-gradient(90deg,transparent 0px,transparent 19px,rgba(57,255,20,0.022) 19px,rgba(57,255,20,0.022) 20px)}
+  .case-play{width:54px;height:54px;border-radius:50%;background:rgba(57,255,20,0.1);border:1.5px solid rgba(57,255,20,0.4);display:flex;align-items:center;justify-content:center;position:relative;z-index:1;transition:all .3s var(--ease);box-shadow:0 0 20px rgba(57,255,20,0.14)}
+  .case-card:hover .case-play{background:rgba(57,255,20,0.2);box-shadow:0 0 36px rgba(57,255,20,0.36);transform:scale(1.1)}
+  .case-play svg{width:18px;height:18px;margin-left:3px;color:var(--lime)}
+  .case-type-tag{position:absolute;bottom:10px;left:10px;z-index:1;font-family:"Unbounded",sans-serif;font-size:8px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);background:rgba(0,0,0,0.8);border:1px solid rgba(57,255,20,0.2);padding:4px 10px;border-radius:100px}
+  .case-body{padding:26px}
+  .case-client{font-family:"Unbounded",sans-serif;font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);margin-bottom:8px}
+  .case-title{font-family:"Unbounded",sans-serif;font-size:17px;font-weight:800;color:var(--fg);letter-spacing:-.022em;margin-bottom:10px}
+  .case-desc{font-size:13px;color:var(--fg-2);line-height:1.7;margin-bottom:18px}
+  .case-stats{display:flex;gap:20px;padding-top:16px;border-top:1px solid rgba(57,255,20,0.06)}
+  .cs-item{display:flex;flex-direction:column;gap:3px}
+  .cs-val{font-family:"Unbounded",sans-serif;font-size:13px;font-weight:800;color:var(--lime);text-shadow:0 0 10px rgba(57,255,20,0.24)}
+  .cs-label{font-size:10px;color:var(--fg-3);letter-spacing:.06em;text-transform:uppercase}
+  /* Design carousel inside cases */
+  .design-panel{padding:20px 0}
+  .design-label{font-size:13px;color:var(--fg-2);line-height:1.7;margin-bottom:32px;text-align:center;max-width:560px;margin-left:auto;margin-right:auto}
+  #team{background:var(--bg)}
+  .team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+  .team-card{background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:var(--r-md);overflow:hidden;backdrop-filter:blur(18px);transition:transform .4s var(--ease),border-color .3s,box-shadow .3s;position:relative}
+  .team-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(57,255,20,0.065) 0%,transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none;z-index:0}
+  .team-card:hover{transform:translateY(-5px);border-color:rgba(57,255,20,0.3);box-shadow:0 16px 44px rgba(0,0,0,0.4),0 0 24px rgba(57,255,20,0.07)}
+  .team-card:hover::before{opacity:1}
+  .team-photo{width:100%;aspect-ratio:1/1;background:var(--bg-2);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .team-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+  .team-photo::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(57,255,20,0.055) 0%,transparent 50%),repeating-linear-gradient(-45deg,transparent 0px,transparent 11px,rgba(57,255,20,0.02) 11px,rgba(57,255,20,0.02) 12px)}
+  .team-photo::after{content:"";position:absolute;bottom:0;left:0;right:0;height:50%;background:linear-gradient(to top,rgba(10,10,10,0.55),transparent)}
+  .team-avatar-letter{font-family:"Unbounded",sans-serif;font-size:36px;font-weight:900;color:rgba(57,255,20,0.2);position:relative;z-index:1}
+  .team-photo-label{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);font-family:"Unbounded",sans-serif;font-size:8px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(57,255,20,0.4);z-index:2;white-space:nowrap}
+  .team-info{padding:18px 16px 20px;position:relative;z-index:1}
+  .team-role{font-family:"Unbounded",sans-serif;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--lime);margin-bottom:6px}
+  .team-name{font-family:"Unbounded",sans-serif;font-size:14px;font-weight:800;color:var(--fg);letter-spacing:-.02em;margin-bottom:6px}
+  .team-desc{font-size:11px;color:var(--fg-3);line-height:1.6}
+  #contact{background:var(--bg-1)}
+  .contact-wrap{max-width:760px;margin:0 auto}
+  .contact-box{background:var(--glass-bg);border:1px solid var(--glass-bd);border-radius:var(--r-xl);padding:72px 80px;text-align:center;backdrop-filter:blur(26px);box-shadow:0 0 60px rgba(57,255,20,0.06),inset 0 1px 0 rgba(255,255,255,0.06),0 40px 100px rgba(0,0,0,0.4);position:relative;overflow:hidden}
+  .contact-box::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(57,255,20,0.06) 0%,transparent 60%);pointer-events:none}
+  .contact-box::after{content:"";position:absolute;bottom:-80px;left:50%;transform:translateX(-50%);width:500px;height:300px;background:radial-gradient(ellipse,rgba(57,255,20,0.07) 0%,transparent 65%);pointer-events:none}
+  .contact-inner{position:relative;z-index:1}
+  .contact-chip{margin-bottom:22px}
+  .contact-h{font-family:"Unbounded",sans-serif;font-size:clamp(26px,4vw,48px);font-weight:900;color:var(--fg);letter-spacing:-.03em;margin-bottom:14px;line-height:1.1}
+  .contact-sub{font-size:15px;color:var(--fg-2);line-height:1.75;max-width:440px;margin:0 auto 44px}
+  .lead-form{display:flex;flex-direction:column;gap:12px;text-align:left}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .form-field{display:flex;flex-direction:column;gap:6px}
+  .form-label{font-family:"Unbounded",sans-serif;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3);padding-left:4px}
+  .form-input{width:100%;height:52px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r-md);padding:0 20px;font-family:"Inter",sans-serif;font-size:13px;color:var(--fg);outline:none;transition:border-color .25s,box-shadow .25s,background .25s;appearance:none;-webkit-appearance:none}
+  .form-input::placeholder{color:var(--fg-3)}
+  .form-input:focus{border-color:rgba(57,255,20,0.4);box-shadow:0 0 20px rgba(57,255,20,0.08);background:rgba(57,255,20,0.025)}
+  .custom-select{position:relative;width:100%;user-select:none}
+  .cs-trigger{width:100%;height:52px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 20px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:var(--r-md);font-family:"Inter",sans-serif;font-size:13px;color:var(--fg-3);cursor:pointer;outline:none;transition:border-color .25s,box-shadow .25s,background .25s,border-radius .22s}
+  .cs-trigger:hover{border-color:rgba(255,255,255,0.18);background:rgba(255,255,255,0.06)}
+  .custom-select.open .cs-trigger{border-color:rgba(57,255,20,0.4);background:rgba(57,255,20,0.03);box-shadow:0 0 20px rgba(57,255,20,0.08);border-radius:var(--r-md) var(--r-md) 0 0}
+  .cs-trigger.filled{color:var(--fg)}
+  .cs-arrow{width:12px;height:12px;flex-shrink:0;color:var(--fg-3);transition:transform .28s var(--ease),color .22s}
+  .custom-select.open .cs-arrow{transform:rotate(180deg);color:var(--lime)}
+  .cs-dropdown{position:absolute;top:100%;left:0;right:0;z-index:200;background:rgba(10,10,10,0.95);backdrop-filter:blur(28px);border:1px solid rgba(57,255,20,0.18);border-top:1px solid rgba(57,255,20,0.08);border-radius:0 0 var(--r-md) var(--r-md);overflow:hidden;opacity:0;transform:translateY(-6px) scaleY(.96);transform-origin:top;pointer-events:none;transition:opacity .22s var(--ease),transform .22s var(--ease)}
+  .custom-select.open .cs-dropdown{opacity:1;transform:translateY(0) scaleY(1);pointer-events:all}
+  .cs-option{padding:13px 20px;font-size:13px;color:rgba(210,210,210,0.75);cursor:pointer;border-left:2px solid transparent;transition:background .15s,color .15s,border-color .15s,padding-left .2s var(--ease)}
+  .cs-option+.cs-option{border-top:1px solid rgba(255,255,255,0.04)}
+  .cs-option:hover{background:rgba(57,255,20,0.07);color:var(--fg);padding-left:26px;border-left-color:rgba(57,255,20,0.35)}
+  .cs-option.selected{color:var(--lime);background:rgba(57,255,20,0.05);border-left-color:var(--lime)}
+  .form-submit-wrap{display:flex;justify-content:center;margin-top:8px}
+  .form-disclaimer{font-size:11px;color:var(--fg-3);text-align:center;margin-top:14px}
+  .form-success{display:none;flex-direction:column;align-items:center;gap:14px;padding:40px 20px}
+  .form-success.show{display:flex}
+  .success-icon{width:64px;height:64px;border-radius:50%;background:rgba(57,255,20,0.08);border:1.5px solid var(--lime);display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:0 0 28px rgba(57,255,20,0.2)}
+  .success-title{font-family:"Unbounded",sans-serif;font-size:18px;font-weight:800;color:var(--lime)}
+  .success-body{font-size:14px;color:var(--fg-2);text-align:center;max-width:320px;line-height:1.65}
+  footer{background:var(--bg);padding:72px 0 48px;border-top:1px solid rgba(57,255,20,0.06);position:relative}
+  footer::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:28%;height:1px;background:linear-gradient(90deg,transparent,rgba(57,255,20,0.28),transparent)}
+  .footer-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:64px;margin-bottom:56px}
+  .footer-logo{font-family:"Unbounded",sans-serif;font-size:18px;font-weight:900;margin-bottom:10px}
+  .footer-logo span{color:var(--lime);text-shadow:0 0 14px rgba(57,255,20,0.4)}
+  .footer-tagline{font-size:13px;color:var(--fg-3);line-height:1.6;margin-bottom:24px;max-width:220px}
+  .footer-social{display:flex;flex-direction:column;gap:10px}
+  .footer-social-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:var(--r-sm);background:rgba(57,255,20,0.06);border:1px solid rgba(57,255,20,0.18);font-family:"Unbounded",sans-serif;font-size:10px;font-weight:700;letter-spacing:.08em;color:rgba(57,255,20,0.75);transition:all .25s var(--ease);width:fit-content}
+  .footer-social-btn:hover{background:rgba(57,255,20,0.12);border-color:rgba(57,255,20,0.42);color:var(--lime);transform:translateX(4px);box-shadow:0 0 14px rgba(57,255,20,0.1)}
+  .footer-social-btn svg{width:14px;height:14px;flex-shrink:0}
+  .footer-col-title{font-family:"Unbounded",sans-serif;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-2);margin-bottom:20px}
+  .footer-nav-links{list-style:none;display:flex;flex-direction:column;gap:12px}
+  .footer-nav-links a{font-size:13px;color:var(--fg-3);transition:color .2s;display:inline-block}
+  .footer-nav-links a:hover{color:var(--lime)}
+  .footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding-top:32px;border-top:1px solid rgba(57,255,20,0.05)}
+  .footer-copy{font-size:11px;color:var(--fg-3)}
+  .footer-made{font-size:11px;color:var(--fg-4);letter-spacing:.04em}
+  @media(max-width:1024px){.services-grid{grid-template-columns:1fr 1fr}.pricing-grid{grid-template-columns:1fr 1fr}.team-grid{grid-template-columns:repeat(3,1fr)}.about-grid{grid-template-columns:1fr;gap:48px}.about-grid>*:nth-child(2){max-width:440px;margin:0 auto;width:100%}.footer-top{grid-template-columns:1fr 1fr}.cases-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:768px){.container{padding:0 20px}section{padding:80px 0}.services-grid,.pricing-grid,.cases-grid{grid-template-columns:1fr}.team-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.process-steps{flex-wrap:wrap}.step-btn{min-width:calc(50% - 1px);border-bottom:1px solid rgba(57,255,20,0.07)}.process-panel{padding:32px 28px}.panel-bg-num{font-size:60px;right:20px}.contact-box{padding:48px 28px}.form-row{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr}.footer-bottom{flex-direction:column;text-align:center}.hero-inner{padding:80px 0 60px}.cases-tabs{flex-wrap:wrap;border-radius:var(--r-md)}.cases-tab{padding:8px 18px}}
+  @media(max-width:480px){.team-grid{grid-template-columns:1fr}.hero-cta{flex-direction:column;align-items:stretch}.btn{justify-content:center}.hero-stats{flex-direction:column}.stat-item{min-width:100%;border-right:none;border-bottom:1px solid rgba(57,255,20,0.07)}.stat-item:last-child{border-bottom:none}}
+  </style>
+</head>
+<body>
+<canvas id="cvs"></canvas>
+<div id="ambient"><div class="amb-orb amb-1"></div><div class="amb-orb amb-2"></div></div>
+<div id="cursor-glow"></div>
+<div class="wrap">
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <div class="nav-logo">POLYAS<span>.</span>MEDIA</div>
+      <ul class="nav-links">
+        <li><a href="#about"    data-key="nav.about">О компании</a></li>
+        <li><a href="#services" data-key="nav.services">Услуги</a></li>
+        <li><a href="#pricing"  data-key="nav.pricing">Прайсы</a></li>
+        <li><a href="#cases"    data-key="nav.cases">Кейсы</a></li>
+        <li><a href="#team"     data-key="nav.team">Команда</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="lang-switch">
+          <button class="lang-btn active" data-lang="ru">RU</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="#contact" class="nav-cta" data-key="nav.cta">Оставить заявку</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div><div class="hero-scan"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="chip r"><span class="chip-dot"></span><span data-key="hero.tag">Полный цикл медиапроизводства</span></div>
+      <h1 class="hero-h1 r r-d1">
+        <span class="line-1" data-key="hero.line1">Визуальный капитал</span>
+        <span class="line-2" data-key="hero.line2">для бизнеса</span>
+      </h1>
+      <p class="hero-sub r r-d2" data-key="hero.sub">Высокоуровневый продакшн для лидеров ниш: Web3, Криптовалюта, Трейдинг, Недвижимость, Медицина</p>
+      <div class="hero-cta r r-d3">
+        <a href="https://t.me/YOUR_HANDLE" target="_blank" class="btn btn-lime"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-2.04 9.606c-.15.68-.543.847-1.1.527l-3.03-2.233-1.462 1.407c-.162.162-.297.297-.608.297l.216-3.065 5.579-5.036c.243-.216-.053-.334-.375-.118L7.28 14.04l-2.97-.928c-.645-.203-.657-.645.135-.953l11.595-4.47c.537-.197 1.007.13.522.56z"/></svg><span data-key="btn.tg">Telegram</span></a>
+        <a href="https://wa.me/YOUR_NUMBER" target="_blank" class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span data-key="btn.wa">WhatsApp</span></a>
+      </div>
+      <div class="hero-stats r r-d4">
+        <div class="stat-item"><div class="stat-val">RU / USA</div><div class="stat-label" data-key="stat.markets">Рынки</div></div>
+        <div class="stat-item"><div class="stat-val">XX млн</div><div class="stat-label" data-key="stat.views">Просмотров</div></div>
+        <div class="stat-item"><div class="stat-val">4+ лет</div><div class="stat-label" data-key="stat.exp">В индустрии</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="r">
+        <span class="chip about-chip"><span class="chip-dot"></span><span data-key="about.chip">О компании</span></span>
+        <p class="about-statement" data-key="about.statement">Таргет и контекстная реклама сегодня — это слив бюджета</p>
+        <div class="about-body">
+          <p data-key="about.p1">В 2026 году средний пользователь видит более 6 000 рекламных сообщений в день. Баннеры, таргет, контекст — всё это давно стало «белым шумом». Аудитория выработала иммунитет и перестала реагировать.</p>
+          <p data-key="about.p2">Единственный формат, который работает — <strong style="color:var(--fg)">VSL (Video Sales Letter)</strong> и премиальный контент, создающий доверие. Контент, который не выглядит как реклама. Который притягивает тёплых клиентов органически — без агрессивного CPA и слитых бюджетов.</p>
+          <p data-key="about.p3">Именно это мы строим для наших клиентов в Web3, Трейдинге, Недвижимости и Медицине.</p>
+        </div>
+        <div class="about-facts">
+          <div>
+            <div class="about-fact-num">6 000+</div>
+            <div class="about-fact-label" data-key="fact.1">рекламных сообщений в день видит ваш клиент</div>
+          </div>
+          <div>
+            <div class="about-fact-num">83%</div>
+            <div class="about-fact-label" data-key="fact.2">аудитории игнорирует баннерную рекламу</div>
+          </div>
+          <div>
+            <div class="about-fact-num">×4.2</div>
+            <div class="about-fact-label" data-key="fact.3">средний ROI VSL против таргета</div>
+          </div>
+        </div>
+      </div>
+      <div class="r r-d2">
+        <div class="founder-card">
+          <div class="founder-photo">
+            <img src="assets/photos/founder-ivan.jpg" alt="Иван Исаков" onerror="this.style.display='none'"/>
+            <div class="founder-photo-label">[ Фото основателя ]</div>
+          </div>
+          <div class="founder-info">
+            <div class="founder-tag" data-key="founder.tag">Основатель</div>
+            <h3 class="founder-name">Иван Исаков</h3>
+            <p class="founder-role" data-key="founder.role">CEO, POLYAS MEDIA</p>
+            <p class="founder-bio" data-key="founder.bio">4+ года в профессиональном медиапроизводстве. Создал POLYAS MEDIA как ответ на растущий запрос рынка в конверсионном видеоконтенте уровня западных студий.</p>
+            <div class="founder-links">
+              <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" class="founder-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>YouTube</a>
+              <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="founder-link"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-2.04 9.606c-.15.68-.543.847-1.1.527l-3.03-2.233-1.462 1.407c-.162.162-.297.297-.608.297l.216-3.065 5.579-5.036c.243-.216-.053-.334-.375-.118L7.28 14.04l-2.97-.928c-.645-.203-.657-.645.135-.953l11.595-4.47c.537-.197 1.007.13.522.56z"/></svg>Telegram</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-header r">
+      <span class="chip"><span class="chip-dot"></span><span data-key="services.chip">Услуги</span></span>
+      <h2 data-key="services.h2">Три направления — один результат</h2>
+      <p data-key="services.sub">Полный цикл медиапроизводства — от стратегии до дистрибуции.</p>
+    </div>
+    <div class="services-grid">
+
+      <!-- Design -->
+      <div class="svc-card r r-d1">
+        <div class="svc-icon">✦</div>
+        <div class="svc-tag">01 — Visual</div>
+        <div class="svc-title" data-key="svc1.title">Дизайн</div>
+        <p class="svc-desc" data-key="svc1.desc">Визуальный язык, который транслирует премиальность с первого взгляда и выделяет вас на любой платформе.</p>
+        <ul class="svc-items">
+          <li data-key="svc1.i1">Thumbnails и обложки каналов</li>
+          <li data-key="svc1.i2">Брендинг и айдентика</li>
+          <li data-key="svc1.i3">Motion Graphics &amp; интро</li>
+          <li data-key="svc1.i4">UI-графика для видео</li>
+        </ul>
+        <div class="thumb-carousel-wrap">
+          <div class="thumb-track" id="thumbTrack">
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-01.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-02.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-03.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-04.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-05.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-06.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-07.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-08.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-09.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-10.jpg" alt="thumb"/></div>
+            <!-- duplicate for seamless loop -->
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-01.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-02.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-03.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-04.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-05.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-06.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-07.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-08.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-09.jpg" alt="thumb"/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-10.jpg" alt="thumb"/></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editing -->
+      <div class="svc-card r r-d2">
+        <div class="svc-icon">⚡</div>
+        <div class="svc-tag">02 — Post-Pro</div>
+        <div class="svc-title" data-key="svc2.title">Монтаж</div>
+        <p class="svc-desc" data-key="svc2.desc">Ритм, динамика, атмосфера. Монтаж, который удерживает внимание до последней секунды.</p>
+        <ul class="svc-items">
+          <li data-key="svc2.i1">Narrative и dynamic-монтаж</li>
+          <li data-key="svc2.i2">Sound Design &amp; озвучка</li>
+          <li data-key="svc2.i3">VFX и цветокоррекция</li>
+          <li data-key="svc2.i4">Адаптация под YT, Reels, TG</li>
+        </ul>
+      </div>
+
+      <!-- Producing -->
+      <div class="svc-card premium r r-d3">
+        <div class="svc-icon">◈</div>
+        <div class="svc-tag">03 — Full Cycle</div>
+        <div class="svc-title" data-key="svc3.title">Продюсирование</div>
+        <p class="svc-desc" data-key="svc3.desc">Вы задаёте направление — мы строим медиаинфраструктуру под ключ. Включает монтаж и дизайн как единую систему.</p>
+        <ul class="svc-items">
+          <li data-key="svc3.i1">Контент-стратегия и сценарии</li>
+          <li data-key="svc3.i2">Дизайн + монтаж в едином стиле</li>
+          <li data-key="svc3.i3">Организация съёмок и команда</li>
+          <li data-key="svc3.i4">Аналитика и оптимизация</li>
+        </ul>
+        <div class="svc-usp"><span class="svc-usp-icon">⏱</span><span class="svc-usp-text" data-key="svc3.usp">4 часа вашего времени</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <div class="section-header r">
+      <span class="chip"><span class="chip-dot"></span><span data-key="process.chip">Процесс</span></span>
+      <h2 data-key="process.h2">От брифа до результата</h2>
+      <p data-key="process.sub">Пять этапов отлаженного производственного пайплайна.</p>
+    </div>
+    <div class="process-wrap">
+      <div class="process-steps r">
+        <button class="step-btn active" data-step="0"><span class="step-num">01</span><span class="step-title" data-key="step1.label">Договор</span></button>
+        <button class="step-btn" data-step="1"><span class="step-num">02</span><span class="step-title" data-key="step2.label">Концепт</span></button>
+        <button class="step-btn" data-step="2"><span class="step-num">03</span><span class="step-title" data-key="step3.label">Инфра&shy;структура</span></button>
+        <button class="step-btn" data-step="3"><span class="step-num">04</span><span class="step-title" data-key="step4.label">Произ&shy;водство</span></button>
+        <button class="step-btn" data-step="4"><span class="step-num">05</span><span class="step-title" data-key="step5.label">Пост-про&shy;дакшн</span></button>
+      </div>
+      <div class="process-panels r r-d1">
+        <div class="process-panel active" data-panel="0">
+          <div class="panel-bg-num">01</div>
+          <div class="panel-step-label" data-key="step1.num">Шаг 01 / 05</div>
+          <div class="panel-title" data-key="step1.title">Договор &amp; Стратегия</div>
+          <p class="panel-desc" data-key="step1.desc">Фиксируем цели, KPI и сроки. Проводим аудит текущего медиапространства клиента и формируем техническое задание под конкретный рынок — RU или EN.</p>
+          <div class="panel-tags"><span class="panel-tag" data-key="step1.t1">Аудит</span><span class="panel-tag" data-key="step1.t2">KPI</span><span class="panel-tag" data-key="step1.t3">ТЗ</span><span class="panel-tag" data-key="step1.t4">Договор</span></div>
+        </div>
+        <div class="process-panel" data-panel="1">
+          <div class="panel-bg-num">02</div>
+          <div class="panel-step-label" data-key="step2.num">Шаг 02 / 05</div>
+          <div class="panel-title" data-key="step2.title">Концепт</div>
+          <p class="panel-desc" data-key="step2.desc">Разрабатываем визуальный язык, нарративную структуру и сценарный план. На этом этапе закладывается ДНК будущего контента и его отличие от конкурентов.</p>
+          <div class="panel-tags"><span class="panel-tag" data-key="step2.t1">Мудборд</span><span class="panel-tag" data-key="step2.t2">Сценарий</span><span class="panel-tag" data-key="step2.t3">Визуальный язык</span></div>
+        </div>
+        <div class="process-panel" data-panel="2">
+          <div class="panel-bg-num">03</div>
+          <div class="panel-step-label" data-key="step3.num">Шаг 03 / 05</div>
+          <div class="panel-title" data-key="step3.title">Инфраструктура</div>
+          <p class="panel-desc" data-key="step3.desc">Настраиваем полный продакшн-пайплайн: команда, оборудование, платформы, автоматизация дистрибуции. Система, которая работает без вашего участия.</p>
+          <div class="panel-tags"><span class="panel-tag" data-key="step3.t1">Команда</span><span class="panel-tag" data-key="step3.t2">Пайплайн</span><span class="panel-tag" data-key="step3.t3">Автоматизация</span></div>
+        </div>
+        <div class="process-panel" data-panel="3">
+          <div class="panel-bg-num">04</div>
+          <div class="panel-step-label" data-key="step4.num">Шаг 04 / 05</div>
+          <div class="panel-title" data-key="step4.title">Производство</div>
+          <p class="panel-desc" data-key="step4.desc">Съёмки, запись, интервью, студийная работа. Все операционные процессы на нашей стороне. Ваше участие: не более 4 часов на весь производственный цикл.</p>
+          <div class="panel-tags"><span class="panel-tag" data-key="step4.t1">Съёмка</span><span class="panel-tag" data-key="step4.t2">Студия</span><span class="panel-tag" data-key="step4.t3">4 часа</span></div>
+        </div>
+        <div class="process-panel" data-panel="4">
+          <div class="panel-bg-num">05</div>
+          <div class="panel-step-label" data-key="step5.num">Шаг 05 / 05</div>
+          <div class="panel-title" data-key="step5.title">Пост-продакшн</div>
+          <p class="panel-desc" data-key="step5.desc">Монтаж, цветокоррекция, Sound Design, финальный рендер. Доставка в согласованных форматах и сроках. Аналитика результатов после публикации.</p>
+          <div class="panel-tags"><span class="panel-tag" data-key="step5.t1">Монтаж</span><span class="panel-tag" data-key="step5.t2">Цвет</span><span class="panel-tag" data-key="step5.t3">Доставка</span><span class="panel-tag" data-key="step5.t4">Аналитика</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-header r">
+      <span class="chip"><span class="chip-dot"></span><span data-key="pricing.chip">Прайсы</span></span>
+      <h2 data-key="pricing.h2">Прозрачные условия</h2>
+      <p data-key="pricing.sub">Выберите формат под ваши задачи и масштаб бизнеса.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="price-card r r-d1">
+        <div class="price-badge">01 — Visual</div>
+        <div class="price-service" data-key="pc1.name">Дизайн</div>
+        <p class="price-tagline" data-key="pc1.tagline">Визуальная система для вашего канала и бренда.</p>
+        <div class="price-amount" data-key="pc1.price">от $100</div>
+        <div class="price-period" data-key="pc1.period">за проект</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li data-key="pc1.f1">Thumbnails и обложки</li>
+          <li data-key="pc1.f2">Брендинг и айдентика</li>
+          <li data-key="pc1.f3">Motion Graphics &amp; интро</li>
+          <li data-key="pc1.f4">UI-графика для видео</li>
+          <li data-key="pc1.f5">До 3 правок включено</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost btn-full" data-key="pc1.btn">Обсудить проект</a>
+      </div>
+
+      <div class="price-card featured r r-d2">
+        <div class="featured-label">TOP CHOICE</div>
+        <div class="price-badge hot">02 — Post-Pro</div>
+        <div class="price-service" data-key="pc2.name">Монтаж</div>
+        <p class="price-tagline" data-key="pc2.tagline">Ритм и атмосфера, которые держат зрителя до конца.</p>
+        <div class="price-amount" data-key="pc2.price">от $200</div>
+        <div class="price-period" data-key="pc2.period">за видео</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li data-key="pc2.f1">Narrative и dynamic-монтаж</li>
+          <li data-key="pc2.f2">Sound Design &amp; озвучка</li>
+          <li data-key="pc2.f3">VFX и цветокоррекция</li>
+          <li data-key="pc2.f4">Адаптация под YT, Reels, TG</li>
+          <li data-key="pc2.f5">До 5 правок включено</li>
+          <li data-key="pc2.f6">Сроки: 5–7 рабочих дней</li>
+        </ul>
+        <a href="#contact" class="btn btn-lime btn-full" data-key="pc2.btn">Оставить заявку</a>
+      </div>
+
+      <div class="price-card r r-d3">
+        <div class="price-badge">03 — Full Cycle</div>
+        <div class="price-service" data-key="pc3.name">Продюсирование</div>
+        <p class="price-tagline" data-key="pc3.tagline">Медиаинфраструктура под ключ: дизайн + монтаж + стратегия.</p>
+        <div class="price-amount" data-key="pc3.price">от $1 000</div>
+        <div class="price-period" data-key="pc3.period">в месяц</div>
+        <div class="price-divider"></div>
+        <ul class="price-features">
+          <li data-key="pc3.f1">Контент-стратегия и сценарии</li>
+          <li data-key="pc3.f2">Дизайн + монтаж в едином стиле</li>
+          <li data-key="pc3.f3">Организация съёмок</li>
+          <li data-key="pc3.f4">Команда под ключ</li>
+          <li data-key="pc3.f5">Только 4 часа вашего времени</li>
+          <li data-key="pc3.f6">Выделенный менеджер</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost btn-full" data-key="pc3.btn">Обсудить формат</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section id="cases">
+  <div class="container">
+    <div class="section-header r">
+      <span class="chip"><span class="chip-dot"></span><span data-key="cases.chip">Кейсы</span></span>
+      <h2 data-key="cases.h2">Реальные результаты</h2>
+      <p data-key="cases.sub">Клиенты из RU и EN рынков — монтаж, дизайн, полный цикл.</p>
+    </div>
+
+    <div class="cases-tabs r">
+      <button class="cases-tab active" data-tab="editing" data-key="tab.editing">Монтаж</button>
+      <button class="cases-tab" data-tab="producing" data-key="tab.producing">Продюсирование</button>
+      <button class="cases-tab" data-tab="design" data-key="tab.design">Дизайн</button>
+    </div>
+
+    <!-- ── МОНТАЖ ── -->
+    <div class="cases-panel active" id="panel-editing">
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:32px;flex-wrap:wrap">
+        <button class="cases-tab active" data-market="ru" data-key="market.ru">RU рынок</button>
+        <button class="cases-tab" data-market="en" data-key="market.en">EN рынок</button>
+      </div>
+
+      <!-- RU editing -->
+      <div class="cases-grid" id="editing-ru">
+        <div class="case-card">
+          <div class="case-thumb">
+            <div class="case-thumb-bg"></div>
+            <img src="assets/cases/case-lavanta-vsl.jpg" alt="Lavanta Ride" onerror="this.style.display='none'"/>
+            <div class="case-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="case-type-tag">VSL</div>
+          </div>
+          <div class="case-body">
+            <div class="case-client">Lavanta Ride</div>
+            <div class="case-title" data-key="c_lav.title">VSL-видео для премиального сервиса</div>
+            <p class="case-desc" data-key="c_lav.desc">Продающее видео для люксового трансферного сервиса. Визуальный нарратив через атмосферу, эмоцию и premium-эстетику. Увеличение конверсии сайта.</p>
+            <div class="case-stats">
+              <div class="cs-item"><div class="cs-val">+65%</div><div class="cs-label" data-key="cs.conversion">Конверсия</div></div>
+              <div class="cs-item"><div class="cs-val">VSL</div><div class="cs-label" data-key="cs.format">Формат</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-thumb">
+            <div class="case-thumb-bg"></div>
+            <img src="assets/cases/case-sergey-channel.jpg" alt="Sergey" onerror="this.style.display='none'"/>
+            <div class="case-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="case-type-tag">YouTube</div>
+          </div>
+          <div class="case-body">
+            <div class="case-client">@mukhomedzyanov</div>
+            <div class="case-title" data-key="c_serg.title">Монтаж YouTube-канала о финансах</div>
+            <p class="case-desc" data-key="c_serg.desc">Регулярный монтаж для финансового блогера — фондовый рынок, крипта, пассивный доход. Dynamic-монтаж, цветокоррекция, Sound Design под каждый выпуск.</p>
+            <div class="case-stats">
+              <div class="cs-item"><div class="cs-val">YouTube</div><div class="cs-label" data-key="cs.platform">Платформа</div></div>
+              <div class="cs-item"><div class="cs-val">Финансы</div><div class="cs-label" data-key="cs.niche">Ниша</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-thumb">
+            <div class="case-thumb-bg"></div>
+            <img src="assets/cases/case-prod-3.jpg" alt="RU case" onerror="this.style.display='none'"/>
+            <div class="case-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="case-type-tag">Reels / TG</div>
+          </div>
+          <div class="case-body">
+            <div class="case-client" data-key="c_ru3.client">RU Кейс</div>
+            <div class="case-title" data-key="c_ru3.title">Монтаж Reels и TG-видео</div>
+            <p class="case-desc" data-key="c_ru3.desc">Регулярная поставка short-form контента для нишевого эксперта. Стабильный органический прирост аудитории через качество монтажа.</p>
+            <div class="case-stats">
+              <div class="cs-item"><div class="cs-val">Reels</div><div class="cs-label" data-key="cs.platform">Платформа</div></div>
+              <div class="cs-item"><div class="cs-val">+2K</div><div class="cs-label" data-key="cs.subs">Подписчики</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EN editing -->
+      <div class="cases-grid" id="editing-en" style="display:none">
+        <div class="case-card">
+          <div class="case-thumb">
+            <div class="case-thumb-bg"></div>
+            <img src="assets/clients/martel-metellus.jpg" alt="Martel Metellus" onerror="this.style.display='none'"/>
+            <div class="case-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="case-type-tag">VSL Ad</div>
+          </div>
+          <div class="case-body">
+            <div class="case-client">Martel Metellus — 108K YT</div>
+            <div class="case-title">Продающий VSL для YouTube-инфлюенсера</div>
+            <p class="case-desc">@MindofMartel — 108K подписчиков, ниша: мужской рост, сила, психология. Смонтировали продающий рекламный VSL для его оффера. Narrative-монтаж, кинематографичный Sound Design.</p>
+            <div class="case-stats">
+              <div class="cs-item"><div class="cs-val">108K</div><div class="cs-label">Subscribers</div></div>
+              <div class="cs-item"><div class="cs-val">VSL Ad</div><div class="cs-label">Format</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-thumb">
+            <div class="case-thumb-bg"></div>
+            <img src="assets/clients/dudley-edouard.jpg" alt="Dudley Edouard" onerror="this.style.display='none'"/>
+            <div class="case-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="case-type-tag">VSL Ad</div>
+          </div>
+          <div class="case-body">
+            <div class="case-client">Dudley J. Edouard — 27K YT</div>
+            <div class="case-title">VSL for Men's Identity Coaching</div>
+            <p class="case-desc">@DudleyJEdouard — 27K subscribers. Helping men break plateaus &amp; refine identity. Edited a high-converting VSL ad for his coaching program with emotional narrative arc and professional pacing.</p>
+            <div class="case-stats">
+              <div class="cs-item"><div class="cs-val">27K</div><div class="cs-label">Subscribers</div></div>
+              <div class="cs-item"><div class="cs-val">VSL Ad</div><div class="cs-label">Format</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-thumb">
+            <div class="case-thumb-bg"></div>
+            <img src="assets/clients/donzel-leggett.jpg" alt="Donzel Leggett" onerror="this.style.display='none'"/>
+            <div class="case-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="case-type-tag">Podcast Series</div>
+          </div>
+          <div class="case-body">
+            <div class="case-client">Donzel A. Leggett</div>
+            <div class="case-title">Mini-Podcast Series — Book Launch</div>
+            <p class="case-desc">Former Fortune 500 executive, Founder of Destiny Development Delta™. Edited a series of mini-podcast episodes based on his book "Make Your Destiny Happen" — cinematic cuts, branded motion graphics.</p>
+            <div class="case-stats">
+              <div class="cs-item"><div class="cs-val">Series</div><div class="cs-label">Format</div></div>
+              <div class="cs-item"><div class="cs-val">Executive</div><div class="cs-label">Niche</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ПРОДЮСИРОВАНИЕ ── -->
+    <div class="cases-panel" id="panel-producing">
+      <p style="text-align:center;color:var(--fg-2);font-size:14px;line-height:1.8;max-width:600px;margin:0 auto 40px" data-key="prod.note">Продюсирование — это монтаж + дизайн + стратегия как единая система. Каждый продакшн-кейс включает полный цикл: от концепта до финального рендера и аналитики.</p>
+      <div class="cases-grid">
+        <div class="case-card">
+          <div class="case-thumb">
+            <div class="case-thumb-bg"></div>
+            <img src="assets/cases/case-prod-1.jpg" alt="" onerror="this.style.display='none'"/>
+            <div class="case-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="case-type-tag">Full Cycle</div>
+          </div>
+          <div class="case-body">
+            <div class="case-client">Martel Metellus</div>
+            <div class="case-title" data-key="cp1.title">Полный медиапродакшн для инфлюенсера</div>
+            <p class="case-desc" data-key="cp1.desc">VSL-видео, thumbnails, брендинг канала. Единый визуальный язык для роста аудитории 108K. Монтаж + дизайн под один стиль.</p>
+            <div class="case-stats">
+              <div class="cs-item"><div class="cs-val">108K</div><div class="cs-label" data-key="cs.subs2">Подписчики</div></div>
+              <div class="cs-item"><div class="cs-val">Full</div><div class="cs-label" data-key="cs.cycle">Цикл</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-thumb">
+            <div class="case-thumb-bg"></div>
+            <img src="assets/cases/case-prod-2.jpg" alt="" onerror="this.style.display='none'"/>
+            <div class="case-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="case-type-tag">Full Cycle</div>
+          </div>
+          <div class="case-body">
+            <div class="case-client" data-key="cp2.client">Lavanta Ride</div>
+            <div class="case-title" data-key="cp2.title">Медиапакет для luxury-бренда</div>
+            <p class="case-desc" data-key="cp2.desc">VSL + серия Reels + визуальный брендинг. Полный пакет контента для премиального трансферного сервиса. Единая premium-эстетика.</p>
+            <div class="case-stats">
+              <div class="cs-item"><div class="cs-val">Luxury</div><div class="cs-label" data-key="cs.niche2">Ниша</div></div>
+              <div class="cs-item"><div class="cs-val">+65%</div><div class="cs-label" data-key="cs.conv2">Конверсия</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="case-card">
+          <div class="case-thumb">
+            <div class="case-thumb-bg"></div>
+            <img src="assets/cases/case-prod-3.jpg" alt="" onerror="this.style.display='none'"/>
+            <div class="case-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
+            <div class="case-type-tag">Full Cycle</div>
+          </div>
+          <div class="case-body">
+            <div class="case-client" data-key="cp3.client">@mukhomedzyanov</div>
+            <div class="case-title" data-key="cp3.title">Канал под ключ — финансы и крипта</div>
+            <p class="case-desc" data-key="cp3.desc">Постоянное сопровождение финансового канала: монтаж выпусков, thumbnails, Shorts. Полный цикл без участия автора в операционке.</p>
+            <div class="case-stats">
+              <div class="cs-item"><div class="cs-val">YouTube</div><div class="cs-label" data-key="cs.plat2">Платформа</div></div>
+              <div class="cs-item"><div class="cs-val">Full</div><div class="cs-label" data-key="cs.cyc2">Цикл</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ДИЗАЙН ── -->
+    <div class="cases-panel" id="panel-design">
+      <div class="design-panel">
+        <p class="design-label" data-key="design.note">10 обложек из нашего портфолио — каждая оптимизирована под CTR. Добавьте свои превью в папку assets/thumbnails/ чтобы отобразились здесь.</p>
+        <div class="thumb-carousel-wrap" style="border-radius:var(--r-lg)">
+          <div class="thumb-track">
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-01.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-02.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-03.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-04.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-05.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-06.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-07.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-08.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-09.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-10.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-01.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-02.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-03.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-04.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-05.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-06.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-07.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-08.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-09.jpg" alt=""/></div>
+            <div class="thumb-item"><img src="assets/thumbnails/thumb-10.jpg" alt=""/></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="container">
+    <div class="section-header r">
+      <span class="chip"><span class="chip-dot"></span><span data-key="team.chip">Команда</span></span>
+      <h2 data-key="team.h2">Люди за результатом</h2>
+      <p data-key="team.sub">Специалисты с опытом в топовых продакшн-студиях.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card r r-d1">
+        <div class="team-photo">
+          <img src="assets/photos/founder-ivan.jpg" alt="Иван Исаков" onerror="this.style.display='none'"/>
+          <span class="team-avatar-letter">И</span>
+          <div class="team-photo-label">[ Фото ]</div>
+        </div>
+        <div class="team-info">
+          <div class="team-role" data-key="tm1.role">CEO / Founder</div>
+          <div class="team-name">Иван Исаков</div>
+          <p class="team-desc" data-key="tm1.desc">Основатель, медиа-продюсер. Стратегия, клиенты, финальный контроль качества.</p>
+        </div>
+      </div>
+      <div class="team-card r r-d2">
+        <div class="team-photo">
+          <img src="assets/photos/team-editor.jpg" alt="" onerror="this.style.display='none'"/>
+          <span class="team-avatar-letter">М</span>
+          <div class="team-photo-label">[ Фото ]</div>
+        </div>
+        <div class="team-info">
+          <div class="team-role" data-key="tm2.role">Lead Editor</div>
+          <div class="team-name" data-key="tm2.name">Монтажёр</div>
+          <p class="team-desc" data-key="tm2.desc">Senior-монтаж, цветокоррекция, motion. 6+ лет в продакшне для YouTube.</p>
+        </div>
+      </div>
+      <div class="team-card r r-d3">
+        <div class="team-photo">
+          <img src="assets/photos/team-designer.jpg" alt="" onerror="this.style.display='none'"/>
+          <span class="team-avatar-letter">Д</span>
+          <div class="team-photo-label">[ Фото ]</div>
+        </div>
+        <div class="team-info">
+          <div class="team-role" data-key="tm3.role">Art Director</div>
+          <div class="team-name" data-key="tm3.name">Дизайнер</div>
+          <p class="team-desc" data-key="tm3.desc">Визуальный язык бренда, thumbnails, UI-графика. Эстетика Quiet Luxury.</p>
+        </div>
+      </div>
+      <div class="team-card r r-d4">
+        <div class="team-photo">
+          <img src="assets/photos/team-sound.jpg" alt="" onerror="this.style.display='none'"/>
+          <span class="team-avatar-letter">С</span>
+          <div class="team-photo-label">[ Фото ]</div>
+        </div>
+        <div class="team-info">
+          <div class="team-role" data-key="tm4.role">Sound Designer</div>
+          <div class="team-name" data-key="tm4.name">Саунд</div>
+          <p class="team-desc" data-key="tm4.desc">Sound Design, музыкальное оформление, озвучка. Студийное качество.</p>
+        </div>
+      </div>
+      <div class="team-card r r-d5">
+        <div class="team-photo">
+          <img src="assets/photos/team-scriptwriter.jpg" alt="" onerror="this.style.display='none'"/>
+          <span class="team-avatar-letter">А</span>
+          <div class="team-photo-label">[ Фото ]</div>
+        </div>
+        <div class="team-info">
+          <div class="team-role" data-key="tm5.role">Scriptwriter</div>
+          <div class="team-name" data-key="tm5.name">Сценарист</div>
+          <p class="team-desc" data-key="tm5.desc">VSL-сценарии, нарративы, хуки. Специализация: Web3, Finance, Real Estate.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="contact-box r">
+        <div class="contact-inner">
+          <span class="chip contact-chip"><span class="chip-dot"></span><span data-key="contact.chip">Заявка</span></span>
+          <h2 class="contact-h" data-key="contact.h">Готовы масштабировать <span class="neon">бизнес?</span></h2>
+          <p class="contact-sub" data-key="contact.sub">Оставьте заявку — ответим в течение 2 часов и проведём бесплатный аудит вашего медиапространства.</p>
+          <form class="lead-form" id="leadForm" novalidate>
+            <div class="form-row">
+              <div class="form-field">
+                <label class="form-label" data-key="form.name">Ваше имя</label>
+                <input class="form-input" id="fName" type="text" placeholder="Иван Петров" autocomplete="name" required />
+              </div>
+              <div class="form-field">
+                <label class="form-label" data-key="form.contact">Telegram / WhatsApp</label>
+                <input class="form-input" id="fContact" type="text" placeholder="@username или +7..." required />
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label" data-key="form.niche">Ваша ниша</label>
+              <div class="custom-select" id="nicheSelect">
+                <button type="button" class="cs-trigger" id="csTrigger" aria-haspopup="listbox" aria-expanded="false">
+                  <span id="csValue" data-key="form.niche_ph">Выберите нишу</span>
+                  <svg class="cs-arrow" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l4 4 4-4"/></svg>
+                </button>
+                <div class="cs-dropdown" role="listbox" id="csDropdown">
+                  <div class="cs-option" data-value="Web3 / Crypto">Web3 / Crypto</div>
+                  <div class="cs-option" data-value="Трейдинг / Инвестиции">Трейдинг / Инвестиции</div>
+                  <div class="cs-option" data-value="Недвижимость">Недвижимость</div>
+                  <div class="cs-option" data-value="Медицина / Здоровье">Медицина / Здоровье</div>
+                  <div class="cs-option" data-value="iGaming">iGaming</div>
+                  <div class="cs-option" data-value="Образование / Инфобизнес">Образование / Инфобизнес</div>
+                  <div class="cs-option" data-value="Другое">Другое</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label" data-key="form.goal">Задача / цель</label>
+              <textarea class="form-input" id="fGoal" rows="3" placeholder="Расскажите о проекте: что нужно сделать, сроки, бюджет" style="height:auto;padding:14px 20px;resize:vertical;min-height:96px" required></textarea>
+            </div>
+            <div class="form-submit-wrap">
+              <button type="submit" class="btn btn-solid" id="submitBtn" style="min-width:220px">
+                <span id="submitLabel" data-key="form.submit">Отправить заявку</span>
+              </button>
+            </div>
+            <p class="form-disclaimer" data-key="form.disclaimer">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Мы не спамим.</p>
+          </form>
+          <div class="form-success" id="formSuccess">
+            <div class="success-icon">✓</div>
+            <div class="success-title" data-key="form.ok_title">Заявка принята</div>
+            <p class="success-body" data-key="form.ok_body">Мы получили вашу заявку и свяжемся в течение 2 часов. Ожидайте сообщение в Telegram.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">POLYAS<span>.</span>MEDIA</div>
+        <p class="footer-tagline" data-key="footer.tagline">Визуальный капитал для лидеров рынка. RU &amp; EN продакшн высшего уровня.</p>
+        <div class="footer-social">
+          <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" class="footer-social-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg><span>YouTube — Иван Исаков</span></a>
+          <a href="https://t.me/YOUR_CHANNEL" target="_blank" class="footer-social-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.248-2.04 9.606c-.15.68-.543.847-1.1.527l-3.03-2.233-1.462 1.407c-.162.162-.297.297-.608.297l.216-3.065 5.579-5.036c.243-.216-.053-.334-.375-.118L7.28 14.04l-2.97-.928c-.645-.203-.657-.645.135-.953l11.595-4.47c.537-.197 1.007.13.522.56z"/></svg><span data-key="footer.tg">Telegram-канал</span></a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title" data-key="footer.nav_title">Навигация</div>
+        <ul class="footer-nav-links">
+          <li><a href="#about" data-key="nav.about">О компании</a></li>
+          <li><a href="#services" data-key="nav.services">Услуги</a></li>
+          <li><a href="#pricing" data-key="nav.pricing">Прайсы</a></li>
+          <li><a href="#cases" data-key="nav.cases">Кейсы</a></li>
+          <li><a href="#team" data-key="nav.team">Команда</a></li>
+          <li><a href="#contact" data-key="nav.cta">Оставить заявку</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title" data-key="footer.ch_title">Каналы основателя</div>
+        <ul class="footer-nav-links">
+          <li><a href="https://youtube.com/@YOUR_CHANNEL" target="_blank">YouTube</a></li>
+          <li><a href="https://t.me/YOUR_CHANNEL" target="_blank">Telegram-канал</a></li>
+          <li><a href="https://t.me/YOUR_HANDLE" target="_blank" data-key="footer.dm">Написать Ивану</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 POLYAS MEDIA. <span data-key="footer.rights">Все права защищены.</span></p>
+      <p class="footer-made">Made with precision — not AI templates</p>
+    </div>
+  </div>
+</footer>
+</div>
+<script>
+const TG_TOKEN   = '8506940363:AAFXyBqUqLZDv9UZDGfR4NI-eMOLIjAZcw4';
+const TG_CHAT_ID = '8506940363';
+
+async function sendToTelegramBot(data){
+  const {name,contact,niche,goal}=data;
+  const now=new Date().toLocaleString('ru-RU',{timeZone:'Europe/Moscow'});
+  const text=[
+    '🟢 *Новая заявка — POLYAS MEDIA*','',
+    '*Имя:* '+name,'*Контакт:* '+contact,
+    '*Ниша:* '+(niche||'Не указана'),'*Задача:* '+goal,'',
+    '*Время:* '+now+' МСК','*Язык:* '+currentLang.toUpperCase()
+  ].join('\n');
+  const res=await fetch('https://api.telegram.org/bot'+TG_TOKEN+'/sendMessage',{
+    method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({chat_id:TG_CHAT_ID,text,parse_mode:'Markdown'})
+  });
+  if(!res.ok) throw new Error('TG '+res.status);
+  return res.json();
+}
+
+/* ═══ I18N ═══ */
+const i18n={
+ru:{
+  'nav.about':'О компании','nav.services':'Услуги','nav.pricing':'Прайсы',
+  'nav.cases':'Кейсы','nav.team':'Команда','nav.cta':'Оставить заявку',
+  'hero.tag':'Полный цикл медиапроизводства',
+  'hero.line1':'Визуальный капитал','hero.line2':'для бизнеса',
+  'hero.sub':'Высокоуровневый продакшн для лидеров ниш: Web3, Криптовалюта, Трейдинг, Недвижимость, Медицина',
+  'btn.tg':'Telegram','btn.wa':'WhatsApp',
+  'stat.markets':'Рынки','stat.views':'Просмотров','stat.exp':'В индустрии',
+  'about.chip':'О компании',
+  'about.statement':'Таргет и контекстная реклама сегодня — это слив бюджета',
+  'about.p1':'В 2026 году средний пользователь видит более 6 000 рекламных сообщений в день. Баннеры, таргет, контекст — всё это давно стало «белым шумом». Аудитория выработала иммунитет и перестала реагировать.',
+  'about.p2':'Единственный формат, который работает — VSL (Video Sales Letter) и премиальный контент, создающий доверие. Контент, который не выглядит как реклама. Который притягивает тёплых клиентов органически.',
+  'about.p3':'Именно это мы строим для наших клиентов в Web3, Трейдинге, Недвижимости и Медицине.',
+  'fact.1':'рекламных сообщений в день видит ваш клиент',
+  'fact.2':'аудитории игнорирует баннерную рекламу',
+  'fact.3':'средний ROI VSL против таргета',
+  'founder.tag':'Основатель','founder.role':'CEO, POLYAS MEDIA',
+  'founder.bio':'4+ года в профессиональном медиапроизводстве. Создал POLYAS MEDIA как ответ на растущий запрос рынка в конверсионном видеоконтенте уровня западных студий.',
+  'services.chip':'Услуги','services.h2':'Три направления — один результат',
+  'services.sub':'Полный цикл медиапроизводства — от стратегии до дистрибуции.',
+  'svc1.title':'Дизайн','svc1.desc':'Визуальный язык, который транслирует премиальность с первого взгляда и выделяет вас на любой платформе.',
+  'svc1.i1':'Thumbnails и обложки каналов','svc1.i2':'Брендинг и айдентика','svc1.i3':'Motion Graphics & интро','svc1.i4':'UI-графика для видео',
+  'svc2.title':'Монтаж','svc2.desc':'Ритм, динамика, атмосфера. Монтаж, который удерживает внимание до последней секунды.',
+  'svc2.i1':'Narrative и dynamic-монтаж','svc2.i2':'Sound Design & озвучка','svc2.i3':'VFX и цветокоррекция','svc2.i4':'Адаптация под YT, Reels, TG',
+  'svc3.title':'Продюсирование','svc3.desc':'Вы задаёте направление — мы строим медиаинфраструктуру под ключ. Включает монтаж и дизайн как единую систему.',
+  'svc3.i1':'Контент-стратегия и сценарии','svc3.i2':'Дизайн + монтаж в едином стиле','svc3.i3':'Организация съёмок и команда','svc3.i4':'Аналитика и оптимизация',
+  'svc3.usp':'4 часа вашего времени',
+  'process.chip':'Процесс','process.h2':'От брифа до результата','process.sub':'Пять этапов отлаженного производственного пайплайна.',
+  'step1.label':'Договор','step2.label':'Концепт','step3.label':'Инфраструктура','step4.label':'Производство','step5.label':'Пост-продакшн',
+  'step1.num':'Шаг 01 / 05','step2.num':'Шаг 02 / 05','step3.num':'Шаг 03 / 05','step4.num':'Шаг 04 / 05','step5.num':'Шаг 05 / 05',
+  'step1.title':'Договор & Стратегия','step1.desc':'Фиксируем цели, KPI и сроки. Проводим аудит текущего медиапространства клиента и формируем техническое задание под конкретный рынок — RU или EN.',
+  'step1.t1':'Аудит','step1.t2':'KPI','step1.t3':'ТЗ','step1.t4':'Договор',
+  'step2.title':'Концепт','step2.desc':'Разрабатываем визуальный язык, нарративную структуру и сценарный план. На этом этапе закладывается ДНК будущего контента и его отличие от конкурентов.',
+  'step2.t1':'Мудборд','step2.t2':'Сценарий','step2.t3':'Визуальный язык',
+  'step3.title':'Инфраструктура','step3.desc':'Настраиваем полный продакшн-пайплайн: команда, оборудование, платформы, автоматизация дистрибуции. Система, которая работает без вашего участия.',
+  'step3.t1':'Команда','step3.t2':'Пайплайн','step3.t3':'Автоматизация',
+  'step4.title':'Производство','step4.desc':'Съёмки, запись, интервью, студийная работа. Все операционные процессы на нашей стороне. Ваше участие: не более 4 часов на весь производственный цикл.',
+  'step4.t1':'Съёмка','step4.t2':'Студия','step4.t3':'4 часа',
+  'step5.title':'Пост-продакшн','step5.desc':'Монтаж, цветокоррекция, Sound Design, финальный рендер. Доставка в согласованных форматах и сроках. Аналитика результатов после публикации.',
+  'step5.t1':'Монтаж','step5.t2':'Цвет','step5.t3':'Доставка','step5.t4':'Аналитика',
+  'pricing.chip':'Прайсы','pricing.h2':'Прозрачные условия','pricing.sub':'Выберите формат под ваши задачи и масштаб бизнеса.',
+  'pc1.name':'Дизайн','pc1.tagline':'Визуальная система для вашего канала и бренда.','pc1.price':'от $100','pc1.period':'за проект',
+  'pc1.f1':'Thumbnails и обложки','pc1.f2':'Брендинг и айдентика','pc1.f3':'Motion Graphics & интро','pc1.f4':'UI-графика для видео','pc1.f5':'До 3 правок включено','pc1.btn':'Обсудить проект',
+  'pc2.name':'Монтаж','pc2.tagline':'Ритм и атмосфера, которые держат зрителя до конца.','pc2.price':'от $200','pc2.period':'за видео',
+  'pc2.f1':'Narrative и dynamic-монтаж','pc2.f2':'Sound Design & озвучка','pc2.f3':'VFX и цветокоррекция','pc2.f4':'Адаптация под YT, Reels, TG','pc2.f5':'До 5 правок включено','pc2.f6':'Сроки: 5–7 рабочих дней','pc2.btn':'Оставить заявку',
+  'pc3.name':'Продюсирование','pc3.tagline':'Медиаинфраструктура под ключ: дизайн + монтаж + стратегия.','pc3.price':'от $1 000','pc3.period':'в месяц',
+  'pc3.f1':'Контент-стратегия и сценарии','pc3.f2':'Дизайн + монтаж в едином стиле','pc3.f3':'Организация съёмок','pc3.f4':'Команда под ключ','pc3.f5':'Только 4 часа вашего времени','pc3.f6':'Выделенный менеджер','pc3.btn':'Обсудить формат',
+  'cases.chip':'Кейсы','cases.h2':'Реальные результаты','cases.sub':'Клиенты из RU и EN рынков — монтаж, дизайн, полный цикл.',
+  'tab.editing':'Монтаж','tab.producing':'Продюсирование','tab.design':'Дизайн',
+  'market.ru':'RU рынок','market.en':'EN рынок',
+  'c_lav.title':'VSL-видео для премиального сервиса','c_lav.desc':'Продающее видео для люксового трансферного сервиса. Визуальный нарратив через атмосферу, эмоцию и premium-эстетику.',
+  'cs.conversion':'Конверсия','cs.format':'Формат','cs.platform':'Платформа','cs.niche':'Ниша','cs.subs':'Подписчики',
+  'c_serg.title':'Монтаж YouTube-канала о финансах','c_serg.desc':'Регулярный монтаж для финансового блогера — фондовый рынок, крипта, пассивный доход. Dynamic-монтаж, цветокоррекция, Sound Design.',
+  'c_ru3.client':'RU Кейс','c_ru3.title':'Монтаж Reels и TG-видео','c_ru3.desc':'Регулярная поставка short-form контента для нишевого эксперта. Стабильный органический прирост аудитории.',
+  'prod.note':'Продюсирование — это монтаж + дизайн + стратегия как единая система. Каждый кейс включает полный цикл: от концепта до финального рендера и аналитики.',
+  'cp1.title':'Полный медиапродакшн для инфлюенсера','cp1.desc':'VSL-видео, thumbnails, брендинг канала. Единый визуальный язык для роста аудитории 108K.',
+  'cs.subs2':'Подписчики','cs.cycle':'Цикл',
+  'cp2.client':'Lavanta Ride','cp2.title':'Медиапакет для luxury-бренда','cp2.desc':'VSL + серия Reels + визуальный брендинг. Полный пакет контента для премиального трансферного сервиса.',
+  'cs.niche2':'Ниша','cs.conv2':'Конверсия',
+  'cp3.client':'@mukhomedzyanov','cp3.title':'Канал под ключ — финансы и крипта','cp3.desc':'Постоянное сопровождение финансового канала: монтаж выпусков, thumbnails, Shorts. Полный цикл без участия автора.',
+  'cs.plat2':'Платформа','cs.cyc2':'Цикл',
+  'design.note':'10 обложек из нашего портфолио — каждая оптимизирована под CTR. Добавьте свои превью в папку assets/thumbnails/ чтобы отобразились здесь.',
+  'team.chip':'Команда','team.h2':'Люди за результатом','team.sub':'Специалисты с опытом в топовых продакшн-студиях.',
+  'tm1.role':'CEO / Founder','tm1.desc':'Основатель, медиа-продюсер. Стратегия, клиенты, финальный контроль качества.',
+  'tm2.role':'Lead Editor','tm2.name':'Монтажёр','tm2.desc':'Senior-монтаж, цветокоррекция, motion. 6+ лет в продакшне для YouTube.',
+  'tm3.role':'Art Director','tm3.name':'Дизайнер','tm3.desc':'Визуальный язык бренда, thumbnails, UI-графика. Эстетика Quiet Luxury.',
+  'tm4.role':'Sound Designer','tm4.name':'Саунд','tm4.desc':'Sound Design, музыкальное оформление, озвучка. Студийное качество.',
+  'tm5.role':'Scriptwriter','tm5.name':'Сценарист','tm5.desc':'VSL-сценарии, нарративы, хуки. Специализация: Web3, Finance, Real Estate.',
+  'contact.chip':'Заявка','contact.h':'Готовы масштабировать бизнес?',
+  'contact.sub':'Оставьте заявку — ответим в течение 2 часов и проведём бесплатный аудит вашего медиапространства.',
+  'form.name':'Ваше имя','form.contact':'Telegram / WhatsApp','form.niche':'Ваша ниша','form.niche_ph':'Выберите нишу',
+  'form.goal':'Задача / цель','form.submit':'Отправить заявку',
+  'form.disclaimer':'Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Мы не спамим.',
+  'form.ok_title':'Заявка принята','form.ok_body':'Мы получили вашу заявку и свяжемся в течение 2 часов. Ожидайте сообщение в Telegram.',
+  'footer.tagline':'Визуальный капитал для лидеров рынка. RU & EN продакшн высшего уровня.',
+  'footer.tg':'Telegram-канал','footer.nav_title':'Навигация','footer.ch_title':'Каналы основателя','footer.dm':'Написать Ивану','footer.rights':'Все права защищены.'
+},
+en:{
+  'nav.about':'About','nav.services':'Services','nav.pricing':'Pricing',
+  'nav.cases':'Cases','nav.team':'Team','nav.cta':'Get a Quote',
+  'hero.tag':'Full-Cycle Media Production',
+  'hero.line1':'Visual Capital','hero.line2':'for Business',
+  'hero.sub':'High-end production for market leaders: Web3, Crypto, Trading, Real Estate, Healthcare',
+  'btn.tg':'Telegram','btn.wa':'WhatsApp',
+  'stat.markets':'Markets','stat.views':'Views','stat.exp':'In industry',
+  'about.chip':'About',
+  'about.statement':'Paid ads today are burning your budget',
+  'about.p1':'In 2026, the average user sees 6,000+ ad messages daily. Banners, retargeting, PPC — it all became white noise. Your audience has developed immunity and stopped reacting.',
+  'about.p2':'The only format that still works: VSL (Video Sales Letter) and premium content that builds trust. Content that doesn\'t look like an ad. That attracts warm clients organically — no aggressive CPA, no wasted spend.',
+  'about.p3':'That\'s exactly what we build for our clients in Web3, Trading, Real Estate and Healthcare.',
+  'fact.1':'ad messages per day your client sees',
+  'fact.2':'of audiences ignore banner ads',
+  'fact.3':'average VSL ROI vs. paid ads',
+  'founder.tag':'Founder','founder.role':'CEO, POLYAS MEDIA',
+  'founder.bio':'4+ years in professional media production. Built POLYAS MEDIA to answer growing demand for conversion-focused video content at Western studio level.',
+  'services.chip':'Services','services.h2':'Three Directions — One Result',
+  'services.sub':'Full-cycle media production — from strategy to distribution.',
+  'svc1.title':'Design','svc1.desc':'A visual language that communicates premium quality at first glance and sets you apart on every platform.',
+  'svc1.i1':'Thumbnails & channel artwork','svc1.i2':'Branding & identity','svc1.i3':'Motion Graphics & intros','svc1.i4':'UI graphics for video',
+  'svc2.title':'Editing','svc2.desc':'Rhythm, dynamics, atmosphere. Editing that keeps attention locked until the last second.',
+  'svc2.i1':'Narrative & dynamic editing','svc2.i2':'Sound Design & voiceover','svc2.i3':'VFX & color grading','svc2.i4':'Adaptation for YT, Reels, TG',
+  'svc3.title':'Production','svc3.desc':'You set the direction — we build the full media infrastructure. Includes editing and design as one unified system.',
+  'svc3.i1':'Content strategy & scripts','svc3.i2':'Design + editing in one style','svc3.i3':'Shoot organization & team','svc3.i4':'Analytics & optimization',
+  'svc3.usp':'4 hours of your time',
+  'process.chip':'Process','process.h2':'From Brief to Result','process.sub':'Five stages of a refined production pipeline.',
+  'step1.label':'Contract','step2.label':'Concept','step3.label':'Infrastructure','step4.label':'Production','step5.label':'Post-Pro',
+  'step1.num':'Step 01 / 05','step2.num':'Step 02 / 05','step3.num':'Step 03 / 05','step4.num':'Step 04 / 05','step5.num':'Step 05 / 05',
+  'step1.title':'Contract & Strategy','step1.desc':'We lock in goals, KPIs and timelines. Audit your current media presence and form a technical brief for your specific market — RU or EN.',
+  'step1.t1':'Audit','step1.t2':'KPIs','step1.t3':'Brief','step1.t4':'Contract',
+  'step2.title':'Concept','step2.desc':'We develop the visual language, narrative structure and script plan. This is where your content\'s DNA and competitive differentiation get established.',
+  'step2.t1':'Moodboard','step2.t2':'Script','step2.t3':'Visual language',
+  'step3.title':'Infrastructure','step3.desc':'We set up the full production pipeline: team, equipment, platforms, distribution automation. A system that runs without your involvement.',
+  'step3.t1':'Team','step3.t2':'Pipeline','step3.t3':'Automation',
+  'step4.title':'Production','step4.desc':'Filming, recording, interviews, studio work. All operational processes on our side. Your involvement: no more than 4 hours per full production cycle.',
+  'step4.t1':'Filming','step4.t2':'Studio','step4.t3':'4 hours',
+  'step5.title':'Post-Production','step5.desc':'Editing, color grading, Sound Design, final render. Delivery in agreed formats and timelines. Post-publication analytics.',
+  'step5.t1':'Editing','step5.t2':'Color','step5.t3':'Delivery','step5.t4':'Analytics',
+  'pricing.chip':'Pricing','pricing.h2':'Transparent Conditions','pricing.sub':'Choose the format for your goals and business scale.',
+  'pc1.name':'Design','pc1.tagline':'Visual system for your channel and brand.','pc1.price':'from $100','pc1.period':'per project',
+  'pc1.f1':'Thumbnails & artwork','pc1.f2':'Branding & identity','pc1.f3':'Motion Graphics & intros','pc1.f4':'UI graphics for video','pc1.f5':'Up to 3 revisions included','pc1.btn':'Discuss project',
+  'pc2.name':'Editing','pc2.tagline':'Rhythm and atmosphere that keep viewers till the end.','pc2.price':'from $200','pc2.period':'per video',
+  'pc2.f1':'Narrative & dynamic editing','pc2.f2':'Sound Design & voiceover','pc2.f3':'VFX & color grading','pc2.f4':'Adaptation for YT, Reels, TG','pc2.f5':'Up to 5 revisions included','pc2.f6':'Turnaround: 5–7 business days','pc2.btn':'Get a Quote',
+  'pc3.name':'Production','pc3.tagline':'Full media infrastructure: design + editing + strategy.','pc3.price':'from $1,000','pc3.period':'per month',
+  'pc3.f1':'Content strategy & scripts','pc3.f2':'Design + editing in one style','pc3.f3':'Shoot organization','pc3.f4':'Full team included','pc3.f5':'Only 4 hours of your time','pc3.f6':'Dedicated manager','pc3.btn':'Discuss format',
+  'cases.chip':'Cases','cases.h2':'Real Results','cases.sub':'Clients from RU and EN markets — editing, design, full cycle.',
+  'tab.editing':'Editing','tab.producing':'Production','tab.design':'Design',
+  'market.ru':'RU market','market.en':'EN market',
+  'c_lav.title':'VSL for a Premium Service','c_lav.desc':'Sales video for a luxury transfer service. Visual narrative through atmosphere, emotion and premium aesthetics. Boosted site conversion.',
+  'cs.conversion':'Conversion','cs.format':'Format','cs.platform':'Platform','cs.niche':'Niche','cs.subs':'Subscribers',
+  'c_serg.title':'YouTube Finance Channel Editing','c_serg.desc':'Ongoing editing for a finance blogger — stock market, crypto, passive income. Dynamic editing, color grading, Sound Design per episode.',
+  'c_ru3.client':'RU Case','c_ru3.title':'Reels & TG Video Editing','c_ru3.desc':'Regular short-form content delivery for a niche expert. Steady organic audience growth through editing quality.',
+  'prod.note':'Production = editing + design + strategy as one unified system. Every production case includes a full cycle: from concept to final render and analytics.',
+  'cp1.title':'Full Media Production for Influencer','cp1.desc':'VSL video, thumbnails, channel branding. Unified visual language for 108K audience growth.',
+  'cs.subs2':'Subscribers','cs.cycle':'Cycle',
+  'cp2.client':'Lavanta Ride','cp2.title':'Media Package for Luxury Brand','cp2.desc':'VSL + Reels series + visual branding. Full content package for a premium transfer service. Unified premium aesthetic.',
+  'cs.niche2':'Niche','cs.conv2':'Conversion',
+  'cp3.client':'@mukhomedzyanov','cp3.title':'Full Channel — Finance & Crypto','cp3.desc':'Ongoing full-service for a finance channel: video editing, thumbnails, Shorts. Author stays out of operations.',
+  'cs.plat2':'Platform','cs.cyc2':'Cycle',
+  'design.note':'10 thumbnails from our portfolio — each optimized for CTR. Drop your images into assets/thumbnails/ to display them here.',
+  'team.chip':'Team','team.h2':'The People Behind Results','team.sub':'Specialists with experience at top-tier production studios.',
+  'tm1.role':'CEO / Founder','tm1.desc':'Founder, media producer. Strategy, clients, final quality control.',
+  'tm2.role':'Lead Editor','tm2.name':'Editor','tm2.desc':'Senior editing, color grading, motion. 6+ years in YouTube production.',
+  'tm3.role':'Art Director','tm3.name':'Designer','tm3.desc':'Brand visual language, thumbnails, UI graphics. Quiet Luxury aesthetic.',
+  'tm4.role':'Sound Designer','tm4.name':'Sound','tm4.desc':'Sound Design, music, voiceover. Studio-grade quality.',
+  'tm5.role':'Scriptwriter','tm5.name':'Scriptwriter','tm5.desc':'VSL scripts, narratives, hooks. Specialization: Web3, Finance, Real Estate.',
+  'contact.chip':'Apply','contact.h':'Ready to scale your business?',
+  'contact.sub':'Leave a request — we respond within 2 hours with a free media audit.',
+  'form.name':'Your name','form.contact':'Telegram / WhatsApp','form.niche':'Your niche','form.niche_ph':'Select niche',
+  'form.goal':'Goal / task','form.submit':'Send Request',
+  'form.disclaimer':'By clicking, you agree to personal data processing. No spam.',
+  'form.ok_title':'Request Received','form.ok_body':'We got your request and will reach out within 2 hours via Telegram.',
+  'footer.tagline':'Visual capital for market leaders. RU & EN premium production.',
+  'footer.tg':'Telegram channel','footer.nav_title':'Navigation','footer.ch_title':'Founder channels','footer.dm':'Message Ivan','footer.rights':'All rights reserved.'
+}};
+
+let currentLang='ru';
+function setLang(lang){
+  if(lang===currentLang) return;
+  currentLang=lang;
+  document.documentElement.lang=lang;
+  document.querySelectorAll('[data-key]').forEach(el=>{
+    const v=i18n[lang][el.dataset.key];
+    if(v!==undefined) el.textContent=v;
+  });
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===lang));
+}
+document.querySelectorAll('.lang-btn').forEach(btn=>btn.addEventListener('click',()=>setLang(btn.dataset.lang)));
+
+/* NAV */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40),{passive:true});
+
+/* SCROLL REVEAL */
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});
+},{threshold:0.08});
+document.querySelectorAll('.r').forEach(el=>ro.observe(el));
+
+/* PROCESS TABS */
+const stepBtns=Array.from(document.querySelectorAll('.step-btn'));
+const stepPanels=Array.from(document.querySelectorAll('.process-panel'));
+function activateStep(idx){
+  stepBtns.forEach((b,i)=>b.classList.toggle('active',i===idx));
+  stepPanels.forEach((p,i)=>p.classList.toggle('active',i===idx));
+}
+stepBtns.forEach((btn,i)=>{
+  btn.addEventListener('click',()=>activateStep(i));
+  btn.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight'){e.preventDefault();const n=Math.min(i+1,stepBtns.length-1);activateStep(n);stepBtns[n].focus();}
+    if(e.key==='ArrowLeft'){e.preventDefault();const n=Math.max(i-1,0);activateStep(n);stepBtns[n].focus();}
+  });
+});
+
+/* CASES TABS */
+document.querySelectorAll('.cases-tab[data-tab]').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.cases-tab[data-tab]').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.cases-panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('panel-'+tab.dataset.tab).classList.add('active');
+  });
+});
+
+/* EDITING MARKET TABS */
+document.querySelectorAll('.cases-tab[data-market]').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.cases-tab[data-market]').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const m=tab.dataset.market;
+    document.getElementById('editing-ru').style.display=m==='ru'?'grid':'none';
+    document.getElementById('editing-en').style.display=m==='en'?'grid':'none';
+  });
+});
+
+/* CUSTOM SELECT */
+let selectedNiche='';
+const selectWrap=document.getElementById('nicheSelect');
+const csTrigger=document.getElementById('csTrigger');
+const csValue=document.getElementById('csValue');
+const csDropdown=document.getElementById('csDropdown');
+function openSelect(){selectWrap.classList.add('open');csTrigger.setAttribute('aria-expanded','true');}
+function closeSelect(){selectWrap.classList.remove('open');csTrigger.setAttribute('aria-expanded','false');}
+csTrigger.addEventListener('click',()=>selectWrap.classList.contains('open')?closeSelect():openSelect());
+csTrigger.addEventListener('keydown',e=>{
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();selectWrap.classList.contains('open')?closeSelect():openSelect();}
+  if(e.key==='Escape') closeSelect();
+});
+document.addEventListener('click',e=>{if(!selectWrap.contains(e.target)) closeSelect();});
+csDropdown.querySelectorAll('.cs-option').forEach(opt=>{
+  opt.addEventListener('click',()=>{
+    selectedNiche=opt.dataset.value;
+    csValue.textContent=selectedNiche;
+    csTrigger.classList.add('filled');
+    csDropdown.querySelectorAll('.cs-option').forEach(o=>o.classList.remove('selected'));
+    opt.classList.add('selected');
+    closeSelect();
+  });
+});
+
+/* LEAD FORM */
+const leadForm=document.getElementById('leadForm');
+const formSuccess=document.getElementById('formSuccess');
+const submitBtn=document.getElementById('submitBtn');
+const submitLabel=document.getElementById('submitLabel');
+leadForm.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const name=document.getElementById('fName').value.trim();
+  const contact=document.getElementById('fContact').value.trim();
+  const goal=document.getElementById('fGoal').value.trim();
+  if(!name||!contact||!goal){
+    [['fName',name],['fContact',contact],['fGoal',goal]].forEach(([id,val])=>{
+      if(!val){const el=document.getElementById(id);el.style.borderColor='rgba(255,60,60,0.6)';el.style.boxShadow='0 0 14px rgba(255,60,60,0.12)';el.addEventListener('input',()=>{el.style.borderColor='';el.style.boxShadow='';},{once:true});}
+    });
+    return;
+  }
+  submitBtn.disabled=true;
+  submitLabel.textContent=currentLang==='ru'?'Отправляем...':'Sending...';
+  try{
+    await sendToTelegramBot({name,contact,niche:selectedNiche,goal});
+    leadForm.style.display='none';
+    formSuccess.classList.add('show');
+  }catch(err){
+    console.error(err);
+    submitLabel.textContent=currentLang==='ru'?'Ошибка — попробуйте снова':'Error — try again';
+    submitBtn.disabled=false;
+    setTimeout(()=>{submitLabel.textContent=i18n[currentLang]['form.submit'];},3500);
+  }
+});
+
+/* PARTICLES */
+(function(){
+  const canvas=document.getElementById('cvs');
+  const ctx=canvas.getContext('2d');
+  let W,H,pts;
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+  function Pt(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.28;this.vy=(Math.random()-.5)*.28;this.r=Math.random()*1.4+.4;this.a=Math.random();}
+  function init(){resize();pts=Array.from({length:Math.min(Math.floor(W*H/14000),72)},()=>new Pt());}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(57,255,20,'+(p.a*.55)+')';
+      ctx.shadowBlur=6;ctx.shadowColor='#39FF14';ctx.fill();ctx.shadowBlur=0;
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize,{passive:true});
+  init();draw();
+})();
+
+/* CURSOR GLOW */
+const cursorGlow=document.getElementById('cursor-glow');
+document.addEventListener('mousemove',e=>{cursorGlow.style.left=e.clientX+'px';cursorGlow.style.top=e.clientY+'px';},{passive:true});
+
+/* MAGNETIC BUTTONS */
+document.querySelectorAll('.btn-solid,.btn-lime').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r=btn.getBoundingClientRect();
+    const dx=(e.clientX-r.left-r.width/2)*.13;
+    const dy=(e.clientY-r.top-r.height/2)*.13;
+    btn.style.transform='translate('+dx+'px,'+dy+'px) translateY(-3px)';
+  });
+  btn.addEventListener('mouseleave',()=>{btn.style.transform='';});
+});
+</script>
+</body>
+</html>
