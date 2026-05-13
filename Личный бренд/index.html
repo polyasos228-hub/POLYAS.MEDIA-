@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Polyas Media — Иван Исаков</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!--
+  ФОТО: положи рядом с этим HTML-файлом:
+  hero.jpg     — портретное фото (чёрный фон, очки)
+  studio.jpg   — фото с микрофоном (зелёный свет)
+  city.jpg     — фото на крыше
+  logo.png     — логотип Polyas Media
+-->
+
+<style>
+:root {
+  --bg: #080808;
+  --bg2: #0D0D0D;
+  --bg3: #111111;
+  --border: #1C1C1C;
+  --border2: #242424;
+  --accent: #B4FF00;
+  --accent2: #8ACC00;
+  --text: #F2F2EE;
+  --text2: #7A7A78;
+  --text3: #3A3A38;
+  --font: 'Unbounded', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── SCROLLBAR ─────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+/* ── NAV ───────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  background: rgba(8,8,8,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 0.5px solid transparent;
+  transition: border-color 0.3s;
+}
+
+nav.scrolled { border-bottom-color: var(--border); }
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo img {
+  height: 28px;
+  filter: invert(1);
+  opacity: 0.9;
+}
+
+.nav-logo-text {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text2);
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent);
+  color: #080808;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+
+.nav-cta:hover { background: #C8FF1A; transform: translateY(-1px); }
+
+/* ── HERO ──────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 120px clamp(48px, calc((100vw - 1360px) / 2), 280px) 80px;
+  gap: 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(180,255,0,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content { max-width: 560px; }
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+
+.hero-tag::before {
+  content: '';
+  width: 20px; height: 1px;
+  background: var(--accent);
+}
+
+h1 {
+  font-size: clamp(36px, 4.5vw, 60px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+h1 .accent { color: var(--accent); }
+
+.hero-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text2);
+  line-height: 1.8;
+  max-width: 400px;
+  margin-bottom: 40px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  color: #080808;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+
+.btn-primary:hover { background: #C8FF1A; transform: translateY(-2px); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text2);
+  padding: 14px 0;
+  transition: color 0.2s;
+}
+
+.btn-secondary:hover { color: var(--text); }
+
+.btn-secondary::after {
+  content: '→';
+  transition: transform 0.2s;
+}
+
+.btn-secondary:hover::after { transform: translateX(4px); }
+
+.hero-image {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.hero-photo-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+.hero-photo-wrap img {
+  width: 100%;
+  height: 580px;
+  object-fit: cover;
+  object-position: center 15%;
+  border-radius: 4px;
+  display: block;
+}
+
+.hero-photo-placeholder {
+  width: 100%;
+  height: 580px;
+  background: var(--bg3);
+  border: 0.5px solid var(--border2);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text3);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+
+/* ── TICKER ────────────────────────── */
+.ticker {
+  overflow: hidden;
+  border-top: 0.5px solid var(--border);
+  border-bottom: 0.5px solid var(--border);
+  padding: 14px 0;
+  background: var(--bg);
+}
+
+.ticker-inner {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker 20s linear infinite;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 24px;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+
+.ticker-item .dot {
+  width: 4px; height: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── FLOATING GLOW ─────────────────── */
+@keyframes glow-float-1 {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  25%  { transform: translate(50px, -40px) scale(1.12); }
+  50%  { transform: translate(20px, 60px) scale(0.95); }
+  75%  { transform: translate(-40px, 20px) scale(1.08); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+@keyframes glow-float-2 {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  33%  { transform: translate(-60px, 40px) scale(1.18); }
+  66%  { transform: translate(40px, -50px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+@keyframes glow-float-3 {
+  0%   { transform: translate(0px, 0px) scale(1); }
+  50%  { transform: translate(30px, 60px) scale(1.15); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.bg-glow {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: -1;
+  will-change: transform;
+}
+.bg-glow-1 {
+  width: 800px; height: 800px;
+  top: -250px; right: -150px;
+  background: radial-gradient(circle, rgba(180,255,0,0.13) 0%, transparent 60%);
+  animation: glow-float-1 14s ease-in-out infinite;
+}
+.bg-glow-2 {
+  width: 600px; height: 600px;
+  bottom: 10vh; left: -200px;
+  background: radial-gradient(circle, rgba(180,255,0,0.09) 0%, transparent 60%);
+  animation: glow-float-2 18s ease-in-out infinite;
+}
+.bg-glow-3 {
+  width: 450px; height: 450px;
+  top: 45vh; right: 5vw;
+  background: radial-gradient(circle, rgba(180,255,0,0.07) 0%, transparent 60%);
+  animation: glow-float-3 11s ease-in-out infinite;
+}
+
+/* ── PHOTO 3D & VIGNETTE ───────────── */
+.hero-photo-wrap,
+.about-photo-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05),
+    0 32px 64px rgba(0,0,0,0.6),
+    0 0 60px rgba(180,255,0,0.06);
+  transition: box-shadow 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+
+.hero-photo-wrap:hover,
+.about-photo-wrap:hover {
+  box-shadow:
+    0 0 0 1px rgba(180,255,0,0.18),
+    0 36px 80px rgba(0,0,0,0.65),
+    0 0 80px rgba(180,255,0,0.14),
+    0 0 120px rgba(180,255,0,0.06);
+}
+
+.hero-photo-wrap img,
+.about-photo-wrap img {
+  transition: transform 0.1s linear;
+  will-change: transform;
+  display: block;
+}
+
+.photo-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 50%, transparent 35%, rgba(0,0,0,0.65) 100%),
+    linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, transparent 25%, transparent 65%, rgba(0,0,0,0.45) 100%),
+    linear-gradient(to right, rgba(0,0,0,0.2) 0%, transparent 15%, transparent 85%, rgba(0,0,0,0.2) 100%);
+  z-index: 1;
+}
+
+.photo-glow {
+  display: none;
+}
+
+/* ── STATS ─────────────────────────── */
+.stats {
+  padding: 80px 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  position: relative;
+  z-index: 1;
+}
+
+.stat-item {
+  background: var(--bg);
+  padding: 40px 32px;
+  text-align: center;
+  cursor: default;
+  transition: background 0.5s cubic-bezier(0.16,1,0.3,1),
+              transform 0.5s cubic-bezier(0.34,1.56,0.64,1),
+              box-shadow 0.5s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 80%, rgba(180,255,0,0.08) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+
+.stat-item:hover {
+  background: #0E0E0A;
+  transform: scale(1.04) translateY(-2px);
+  box-shadow: 0 0 0 1px rgba(180,255,0,0.2), 0 12px 40px rgba(180,255,0,0.1);
+  z-index: 2;
+}
+
+.stat-item:hover::before { opacity: 1; }
+
+.stat-item:hover .stat-num {
+  text-shadow: 0 0 20px rgba(180,255,0,0.5);
+}
+
+.stat-num {
+  font-size: 40px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 8px;
+  transition: text-shadow 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+
+.stat-label {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text2);
+  line-height: 1.5;
+}
+
+/* ── SECTION TEMPLATE ──────────────── */
+section {
+  padding: 100px 48px;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.section-tag::before {
+  content: '';
+  width: 16px; height: 1px;
+  background: var(--accent);
+}
+
+h2 {
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+/* ── ABOUT ─────────────────────────── */
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  border-top: 0.5px solid var(--border);
+}
+
+.about-image { position: relative; }
+
+.about-photo-wrap img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 4px;
+  display: block;
+}
+
+.about-photo-placeholder {
+  width: 100%;
+  height: 520px;
+  background: var(--bg3);
+  border: 0.5px solid var(--border2);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text3);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+
+.about-content h2 { margin-bottom: 32px; }
+
+.about-text {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text2);
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+
+.about-text strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.tag-chip {
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text2);
+  border: 0.5px solid var(--border2);
+  padding: 7px 14px;
+  border-radius: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.tag-chip:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ── SERVICES ──────────────────────── */
+.services {
+  border-top: 0.5px solid var(--border);
+}
+
+.services-header {
+  display: block;
+  margin-bottom: 64px;
+  max-width: 600px;
+}
+
+.services-header p {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text2);
+  line-height: 1.8;
+  max-width: 480px;
+  margin-top: 16px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+
+.service-card {
+  background: var(--bg);
+  padding: 40px 28px;
+  transition: background 0.4s cubic-bezier(0.16,1,0.3,1),
+              transform 0.4s cubic-bezier(0.16,1,0.3,1),
+              box-shadow 0.4s cubic-bezier(0.16,1,0.3,1);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.service-card:hover {
+  background: var(--bg3);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3), 0 0 20px rgba(180,255,0,0.05);
+}
+
+.service-card:hover::after { transform: scaleX(1); }
+
+.service-num {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 32px;
+  display: block;
+}
+
+.service-icon {
+  width: 40px; height: 40px;
+  margin-bottom: 20px;
+  opacity: 0.6;
+}
+
+.service-card h3 {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  margin-bottom: 16px;
+}
+
+.service-card p {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text2);
+  line-height: 1.8;
+}
+
+/* ── CASES ─────────────────────────── */
+.cases {
+  border-top: 0.5px solid var(--border);
+}
+
+.cases-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 56px;
+}
+
+.case-niche {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.case-title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.case-desc {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text2);
+  line-height: 1.6;
+}
+
+.case-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.metric {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.metric-val {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--accent);
+}
+
+.metric-label {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text2);
+}
+
+.case-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.case-tag {
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  border: 0.5px solid var(--border2);
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+/* ── PACKAGES ──────────────────────── */
+.packages {
+  border-top: 0.5px solid var(--border);
+}
+
+.packages-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 56px;
+}
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  background: transparent;
+  perspective: 1200px;
+  align-items: start;
+}
+
+.pkg-card {
+  background: var(--bg2);
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1),
+              box-shadow 0.5s cubic-bezier(0.16,1,0.3,1),
+              border-color 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+.pkg-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.06) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.pkg-card:hover {
+  transform: translateY(-12px);
+  box-shadow:
+    0 28px 64px rgba(0,0,0,0.6),
+    0 0 30px rgba(255,255,255,0.07),
+    0 0 60px rgba(255,255,255,0.03),
+    0 0 0 1px rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.22);
+}
+
+.pkg-card:hover::after { opacity: 1; }
+
+.pkg-card.featured {
+  background: #0C160E;
+  border-color: rgba(180,255,0,0.25);
+  margin-top: -12px;
+  padding-bottom: 48px;
+}
+
+.pkg-card.featured::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.pkg-card.featured:hover {
+  transform: translateY(-14px);
+  box-shadow: 0 28px 72px rgba(0,0,0,0.6),
+              0 0 40px rgba(180,255,0,0.18),
+              0 0 80px rgba(180,255,0,0.08),
+              0 0 0 1px rgba(180,255,0,0.35);
+  border-color: rgba(180,255,0,0.4);
+}
+
+.pkg-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: #080808;
+  padding: 5px 12px;
+  border-radius: 2px;
+  margin-bottom: 24px;
+  align-self: flex-start;
+}
+
+.pkg-tier {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text2);
+  margin-bottom: 12px;
+}
+
+.pkg-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.pkg-price-block {
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 0.5px solid var(--border2);
+}
+
+.pkg-price {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  line-height: 1;
+}
+
+.pkg-price sup {
+  font-size: 14px;
+  font-weight: 400;
+  vertical-align: super;
+  color: var(--text2);
+}
+
+.pkg-deadline {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--text2);
+  margin-top: 8px;
+}
+
+.pkg-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  margin-bottom: 32px;
+}
+
+.pkg-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text2);
+  line-height: 1.5;
+}
+
+.pkg-features li.active { color: var(--text); }
+
+.pkg-features li::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--border2);
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.pkg-features li.active::before {
+  background: var(--accent);
+}
+
+.pkg-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.pkg-cta-outline {
+  background: transparent;
+  color: var(--text2);
+  border: 0.5px solid var(--border2);
+}
+
+.pkg-cta-outline:hover {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.pkg-cta-filled {
+  background: var(--accent);
+  color: #080808;
+  border: none;
+}
+
+.pkg-cta-filled:hover { background: #C8FF1A; transform: translateY(-2px); }
+
+/* ── CTA ───────────────────────────── */
+.cta-section {
+  border-top: 0.5px solid var(--border);
+  text-align: center;
+  padding: 120px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  bottom: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 400px;
+  background: radial-gradient(ellipse, rgba(180,255,0,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-eyebrow {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.cta-section h2 {
+  font-size: clamp(32px, 4vw, 56px);
+  margin-bottom: 20px;
+}
+
+.cta-sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text2);
+  margin-bottom: 48px;
+  line-height: 1.7;
+}
+
+.cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-tg {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--accent);
+  color: #080808;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  text-decoration: none;
+}
+
+.btn-tg:hover { background: #C8FF1A; transform: translateY(-2px); }
+
+.btn-tg svg { width: 18px; height: 18px; }
+
+.btn-yt {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text2);
+  border: 0.5px solid var(--border2);
+  padding: 16px 24px;
+  border-radius: 2px;
+  transition: color 0.2s, border-color 0.2s;
+  text-decoration: none;
+}
+
+.btn-yt:hover { color: var(--text); border-color: var(--text2); }
+
+/* ── FOOTER ────────────────────────── */
+footer {
+  border-top: 0.5px solid var(--border);
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.footer-brand {}
+
+.footer-logo img {
+  height: 24px;
+  filter: invert(1);
+  opacity: 0.6;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.footer-logo-text {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.6;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.footer-copy {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--text3);
+  line-height: 1.6;
+}
+
+.footer-links h4 {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 20px;
+}
+
+.footer-links ul { list-style: none; }
+
+.footer-links ul li { margin-bottom: 12px; }
+
+.footer-links ul li a {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text2);
+  transition: color 0.2s;
+}
+
+.footer-links ul li a:hover { color: var(--accent); }
+
+.footer-contacts h4 {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 20px;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.contact-label {
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 4px;
+}
+
+.contact-value {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text2);
+  transition: color 0.2s;
+}
+
+.contact-value:hover { color: var(--accent); }
+
+.footer-bottom {
+  border-top: 0.5px solid var(--border);
+  padding: 20px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-bottom span {
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: var(--text3);
+}
+
+/* ── REVEAL ANIMATION — Apple-style ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+
+/* Apple spring on interactive elements */
+.btn-primary, .btn-tg, .nav-cta, .pkg-cta-filled {
+  transition: background 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+.service-card {
+  transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.case-row {
+  transition: background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.case-row:hover {
+  transform: translateY(-2px) !important;
+}
+
+.tag-chip {
+  transition: color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* ── CASE ROW REDESIGN ─────────────── */
+.cases-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: transparent !important;
+}
+
+.case-row {
+  background: var(--bg2);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 200px 1fr 220px;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.45s cubic-bezier(0.16,1,0.3,1),
+              box-shadow 0.45s cubic-bezier(0.16,1,0.3,1),
+              border-color 0.3s !important;
+}
+
+.case-row:hover {
+  background: var(--bg3);
+  transform: translateY(-5px) !important;
+  box-shadow: 0 20px 56px rgba(0,0,0,0.5),
+              0 0 28px rgba(180,255,0,0.07),
+              0 0 0 1px rgba(180,255,0,0.12) !important;
+  border-color: rgba(180,255,0,0.15) !important;
+}
+
+.case-thumb {
+  position: relative;
+  overflow: hidden;
+  min-height: 160px;
+}
+
+.case-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.7s cubic-bezier(0.16,1,0.3,1);
+  display: block;
+}
+
+.case-row:hover .case-thumb img { transform: scale(1.06); }
+
+.case-thumb-vignette {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.92) 0%,
+    rgba(0,0,0,0.5) 45%,
+    rgba(0,0,0,0.15) 100%
+  );
+  z-index: 1;
+}
+
+.case-thumb-inner {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 2;
+  padding: 16px;
+}
+
+.case-thumb-name {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text);
+  line-height: 1.25;
+  display: block;
+}
+
+.case-thumb-sub {
+  font-size: 9px;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-top: 3px;
+  display: block;
+}
+
+.case-body {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.case-body .case-niche {
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.case-body .case-title {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.case-body .case-desc {
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--text2);
+  line-height: 1.65;
+}
+
+.case-right {
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+  border-left: 0.5px solid var(--border);
+}
+
+.case-right .case-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.case-right .case-link-btn {
+  margin-top: auto;
+}
+
+.case-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #080808;
+  background: var(--accent);
+  padding: 9px 16px;
+  border-radius: 3px;
+  border: none;
+  transition: background 0.3s cubic-bezier(0.16,1,0.3,1),
+              transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  align-self: flex-start;
+  white-space: nowrap;
+}
+
+.case-link-btn:hover {
+  background: #C8FF1A;
+  transform: translateY(-2px);
+}
+
+/* ── RESPONSIVE ────────────────────── */
+
+/* Tablet — 1024px */
+@media (max-width: 1024px) {
+  nav { padding: 18px 24px; }
+  .nav-links { display: none; }
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 120px 24px 60px;
+    gap: 40px;
+    min-height: auto;
+  }
+  .hero-image { order: -1; justify-content: center; }
+  .hero-photo-wrap { max-width: 480px; margin: 0 auto; }
+  .hero-photo-wrap img, .hero-photo-placeholder { height: 420px; }
+  .about { grid-template-columns: 1fr; gap: 40px; padding: 60px 24px; }
+  .about-photo-wrap img { height: 420px; }
+  .stats { grid-template-columns: repeat(2, 1fr); padding: 0; }
+  .stat-item { padding: 32px 24px; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .services-header { max-width: 100%; }
+  .case-row { grid-template-columns: 160px 1fr 200px; }
+  .packages-grid { grid-template-columns: 1fr; gap: 12px; }
+  .pkg-card.featured { margin-top: 0; }
+  section { padding: 60px 24px; }
+  .cases { padding: 60px 24px; }
+  footer { grid-template-columns: 1fr 1fr; gap: 40px; padding: 48px 24px; }
+  .footer-bottom { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+}
+
+/* Mobile — 768px */
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .nav-cta { font-size: 10px; padding: 10px 16px; }
+  .hero { padding: 100px 20px 56px; gap: 32px; }
+  .hero-photo-wrap { max-width: 100%; }
+  .hero-photo-wrap img, .hero-photo-placeholder { height: 360px; }
+  .about { padding: 56px 20px; gap: 36px; }
+  .about-photo-wrap img { height: 360px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat-num { font-size: 32px; }
+  .ticker-item { font-size: 9px; gap: 16px; padding: 0 16px; }
+  .services-grid { grid-template-columns: 1fr 1fr; gap: 1px; }
+  .service-card { padding: 28px 20px; }
+  section { padding: 56px 20px; }
+  .cases { padding: 56px 20px; }
+  .case-row { grid-template-columns: 120px 1fr; }
+  .case-right { display: none; }
+  .case-body { padding: 20px 16px; }
+  .case-body .case-title { font-size: 13px; }
+  .packages-grid { grid-template-columns: 1fr; gap: 12px; }
+  .pkg-card { padding: 28px 22px; }
+  footer { grid-template-columns: 1fr; gap: 32px; padding: 40px 20px; }
+  .footer-bottom { padding: 16px 20px; }
+}
+
+/* iPhone — 480px и меньше */
+@media (max-width: 480px) {
+  nav { padding: 14px 16px; }
+  .nav-logo-text { font-size: 11px; }
+  .nav-cta { padding: 9px 14px; font-size: 9px; letter-spacing: 0.1em; }
+
+  .hero { padding: 88px 16px 48px; gap: 28px; }
+  h1 { font-size: 32px; line-height: 1.05; }
+  h1 .accent { font-size: 32px; }
+  .hero-tag { font-size: 9px; margin-bottom: 20px; }
+  .hero-sub { font-size: 12px; margin-bottom: 32px; }
+  .hero-photo-wrap img, .hero-photo-placeholder { height: 300px; }
+  .btn-primary { padding: 13px 22px; font-size: 10px; }
+  .btn-secondary { font-size: 10px; }
+  .hero-actions { gap: 14px; }
+
+  .ticker { padding: 12px 0; }
+  .ticker-item { font-size: 8px; gap: 12px; padding: 0 12px; }
+
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .stat-item { padding: 28px 16px; }
+  .stat-num { font-size: 28px; }
+  .stat-label { font-size: 9px; }
+
+  .about { padding: 48px 16px; gap: 32px; }
+  .about-photo-wrap img { height: 280px; }
+  h2 { font-size: 28px; }
+
+  section { padding: 48px 16px; }
+  .cases { padding: 48px 16px; }
+  .section-tag { font-size: 9px; }
+
+  .services-grid { grid-template-columns: 1fr; gap: 1px; }
+  .service-card { padding: 24px 16px; }
+  .service-num { font-size: 10px; }
+  .service-name { font-size: 14px; }
+  .service-desc { font-size: 11px; }
+
+  .case-row { grid-template-columns: 100px 1fr; border-radius: 6px; }
+  .case-thumb { min-height: 130px; }
+  .case-thumb-name { font-size: 11px; }
+  .case-thumb-sub { font-size: 8px; }
+  .case-body { padding: 16px 12px; }
+  .case-niche { font-size: 8px; }
+  .case-body .case-title { font-size: 12px; line-height: 1.4; }
+  .case-body .case-desc { display: none; }
+  .case-right { display: none; }
+
+  .packages-grid { gap: 10px; }
+  .pkg-card { padding: 24px 18px; }
+  .pkg-tier { font-size: 8px; }
+  .pkg-name { font-size: 20px; }
+  .pkg-price { font-size: 28px; }
+  .pkg-deadline { font-size: 10px; }
+  .pkg-divider { margin: 16px 0; }
+  .pkg-features { font-size: 11px; gap: 10px; }
+  .pkg-btn { padding: 13px 20px; font-size: 10px; }
+  .pkg-badge { font-size: 8px; padding: 4px 10px; }
+
+  .cta-section h2 { font-size: 26px; }
+  .cta-sub { font-size: 12px; }
+
+  footer { padding: 36px 16px; gap: 28px; }
+  .footer-bottom { padding: 14px 16px; gap: 6px; }
+  .footer-bottom span { font-size: 9px; }
+}
+
+/* iPhone SE / маленькие телефоны — 375px */
+@media (max-width: 375px) {
+  h1 { font-size: 28px; }
+  .hero-photo-wrap img { height: 260px; }
+  .stat-num { font-size: 24px; }
+  .about-photo-wrap img { height: 240px; }
+  h2 { font-size: 24px; }
+  .pkg-price { font-size: 24px; }
+}
+
+/* ── WIDE SCREEN CONSTRAINT ────────── */
+@media (min-width: 1500px) {
+  nav {
+    padding-left: clamp(48px, calc((100vw - 1360px) / 2), 400px);
+    padding-right: clamp(48px, calc((100vw - 1360px) / 2), 400px);
+  }
+  .stats {
+    padding-left: clamp(48px, calc((100vw - 1360px) / 2), 400px);
+    padding-right: clamp(48px, calc((100vw - 1360px) / 2), 400px);
+  }
+  .ticker { /* full-width OK */ }
+  section:not(.hero) {
+    padding-left: clamp(48px, calc((100vw - 1360px) / 2), 400px) !important;
+    padding-right: clamp(48px, calc((100vw - 1360px) / 2), 400px) !important;
+  }
+  footer {
+    padding-left: clamp(48px, calc((100vw - 1360px) / 2), 400px);
+    padding-right: clamp(48px, calc((100vw - 1360px) / 2), 400px);
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- FLOATING GLOW -->
+<div class="bg-glow bg-glow-1"></div>
+<div class="bg-glow bg-glow-2"></div>
+<div class="bg-glow bg-glow-3"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <img src="logo.png" alt="Polyas Media" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <span class="nav-logo-text" style="display:none">Polyas Media</span>
+  </div>
+  <div class="nav-links">
+    <a href="#about">Обо мне</a>
+    <a href="#services">Услуги</a>
+    <a href="#cases">Кейсы</a>
+    <a href="#packages">Пакеты</a>
+  </div>
+  <a class="nav-cta" href="https://t.me/polyasmedia" target="_blank" rel="noopener">
+    Написать в Telegram
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-tag reveal">Видеопродакшн &amp; Медиа</span>
+    <h1 class="reveal reveal-delay-1">
+      Контент<br>который<br><span class="accent">работает</span>
+    </h1>
+    <p class="hero-sub reveal reveal-delay-2">
+      Делаю YouTube-продакшн для бизнесов и инфлюенсеров. Монтаж, моушен-дизайн, инфографика, концепция — всё, чтобы видео удерживало и продавало.
+    </p>
+    <div class="hero-actions reveal reveal-delay-3">
+      <a class="btn-primary" href="https://t.me/polyasmedia" target="_blank" rel="noopener">
+        Обсудить проект
+      </a>
+      <a class="btn-secondary" href="#cases">
+        Смотреть кейсы
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-image reveal reveal-delay-2">
+    <div class="hero-photo-wrap">
+      <div class="photo-glow"></div>
+      <img src="hero.jpg" alt="Иван Исаков" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="hero-photo-placeholder" style="display:none">
+        <span>→ Положи hero.jpg</span>
+        <span>рядом с этим файлом</span>
+      </div>
+      <div class="photo-vignette"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker">
+    <span class="ticker-item"><span class="dot"></span>YouTube продакшн</span>
+    <span class="ticker-item"><span class="dot"></span>Моушен-дизайн</span>
+    <span class="ticker-item"><span class="dot"></span>Инфографика</span>
+    <span class="ticker-item"><span class="dot"></span>Цветокоррекция</span>
+    <span class="ticker-item"><span class="dot"></span>Саунд-дизайн</span>
+    <span class="ticker-item"><span class="dot"></span>Брендинг канала</span>
+    <span class="ticker-item"><span class="dot"></span>Shorts &amp; Reels</span>
+    <span class="ticker-item"><span class="dot"></span>Международные проекты</span>
+    <span class="ticker-item"><span class="dot"></span>Воронки продаж</span>
+    <span class="ticker-item"><span class="dot"></span>YouTube продакшн</span>
+    <span class="ticker-item"><span class="dot"></span>Моушен-дизайн</span>
+    <span class="ticker-item"><span class="dot"></span>Инфографика</span>
+    <span class="ticker-item"><span class="dot"></span>Цветокоррекция</span>
+    <span class="ticker-item"><span class="dot"></span>Саунд-дизайн</span>
+    <span class="ticker-item"><span class="dot"></span>Брендинг канала</span>
+    <span class="ticker-item"><span class="dot"></span>Shorts &amp; Reels</span>
+    <span class="ticker-item"><span class="dot"></span>Международные проекты</span>
+    <span class="ticker-item"><span class="dot"></span>Воронки продаж</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item reveal">
+    <span class="stat-num">4+</span>
+    <span class="stat-label">Года<br>в продакшне</span>
+  </div>
+  <div class="stat-item reveal reveal-delay-1">
+    <span class="stat-num">100K+</span>
+    <span class="stat-label">Серебряная кнопка<br>YouTube</span>
+  </div>
+  <div class="stat-item reveal reveal-delay-2">
+    <span class="stat-num">11.8M</span>
+    <span class="stat-label">Просмотров<br>в одном проекте</span>
+  </div>
+  <div class="stat-item reveal reveal-delay-3">
+    <span class="stat-num">×20</span>
+    <span class="stat-label">Рост просмотров<br>у клиентов</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-image">
+    <div class="about-photo-wrap">
+      <div class="photo-glow"></div>
+      <img src="studio.jpg" alt="Иван Исаков в студии" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+      <div class="about-photo-placeholder" style="display:none">studio.jpg</div>
+      <div class="photo-vignette"></div>
+    </div>
+  </div>
+
+  <div class="about-content">
+    <span class="section-tag reveal">Об авторе</span>
+    <h2 class="reveal reveal-delay-1">Иван<br>Исаков</h2>
+    <p class="about-text reveal reveal-delay-2" style="margin-top: 24px;">
+      Видеодел, дизайнер и медиа-продюсер. <strong>4 года в индустрии</strong> — работал в продакшн-компаниях, закрывал <strong>международные англоязычные проекты</strong>, строил YouTube-каналы с нуля до monetization.
+    </p>
+    <p class="about-text reveal reveal-delay-2">
+      Не просто монтирую — <strong>строю концепцию видео</strong>, прорабатываю воронки продаж внутри контента, работаю с инфографикой и моушен-дизайном. Результат: ролики, которые удерживают зрителя и приводят лидов.
+    </p>
+    <p class="about-text reveal reveal-delay-3">
+      Внедряю ИИ-инструменты в операционку: стратегия, дедлайны, концепция канала. <strong>Работаю на результат, а не на объём.</strong>
+    </p>
+    <div class="about-tags reveal reveal-delay-3">
+      <span class="tag-chip">Adobe Premiere</span>
+      <span class="tag-chip">After Effects</span>
+      <span class="tag-chip">Motion Design</span>
+      <span class="tag-chip">DaVinci Resolve</span>
+      <span class="tag-chip">Инфографика</span>
+      <span class="tag-chip">Sound Design</span>
+      <span class="tag-chip">YouTube SEO</span>
+      <span class="tag-chip">AI Tools</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <span class="section-tag reveal">Что делаю</span>
+    <h2 class="reveal reveal-delay-1">Полный<br>продакшн</h2>
+    <p class="reveal reveal-delay-2">
+      От базового монтажа до полного медиапродакшна с концепцией, моушен-графикой и стратегией канала.
+    </p>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-num">01</span>
+      <h3>YouTube<br>под ключ</h3>
+      <p>Монтаж, цветокоррекция, саунд-дизайн, субтитры, кликабельная обложка. Сдаю в срок.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-num">02</span>
+      <h3>Моушен &amp;<br>Инфографика</h3>
+      <p>Анимированная инфографика, титры, переходы. Видео, которое не просто смотрят — в него верят.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <span class="service-num">03</span>
+      <h3>Shorts &amp;<br>Reels</h3>
+      <p>Нарезка длинного контента в вирусные вертикальные форматы под алгоритмы.</p>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <span class="service-num">04</span>
+      <h3>Брендинг<br>канала</h3>
+      <p>Фирменный стиль, шаблоны обложек, визуальная концепция. Канал, который узнают.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CASES -->
+<section class="cases" id="cases">
+  <div class="cases-header">
+    <div>
+      <span class="section-tag reveal">Кейсы</span>
+      <h2 class="reveal reveal-delay-1">Результаты<br>клиентов</h2>
+    </div>
+  </div>
+
+  <div class="cases-list">
+
+    <!-- Case 1: Ser Crypto -->
+    <a class="case-row reveal" href="https://www.youtube.com/@sercrypto" target="_blank" rel="noopener">
+      <div class="case-thumb">
+        <img src="case-sercrypto.jpg" alt="Ser Crypto" onerror="this.style.display='none'; this.nextElementSibling.style.background='linear-gradient(160deg,#0A1628,#1a3a5a)'">
+        <div class="case-thumb-vignette"></div>
+        <div class="case-thumb-inner">
+          <span class="case-thumb-name">Ser Crypto</span>
+          <span class="case-thumb-sub">Крипто / Образование</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <span class="case-niche">Крипто / Образование</span>
+        <div class="case-title">Ser Crypto — медиа-машина для крипто-эксперта</div>
+        <div class="case-desc">Продакшн YouTube-канала: монтаж, инфографика, обложки, воронка продаж. Просмотры: 357 тыс. → 7,1 млн. Лиды: 20–35 → 1000+ в месяц. Продажи ×5.</div>
+      </div>
+      <div class="case-right">
+        <div class="case-metrics">
+          <div class="metric"><span class="metric-val">×20</span><span class="metric-label">просмотры</span></div>
+          <div class="metric"><span class="metric-val">×5</span><span class="metric-label">продажи/мес</span></div>
+        </div>
+        <span class="case-link-btn">Смотреть канал</span>
+      </div>
+    </a>
+
+    <!-- Case 2: Get Asic -->
+    <a class="case-row reveal" href="https://www.youtube.com/@getasic" target="_blank" rel="noopener">
+      <div class="case-thumb">
+        <img src="case-getasic.jpg" alt="Get ASIC" onerror="this.style.display='none'; this.nextElementSibling.style.background='linear-gradient(160deg,#0D1F0D,#1a3a1a)'">
+        <div class="case-thumb-vignette"></div>
+        <div class="case-thumb-inner">
+          <span class="case-thumb-name">Get ASIC</span>
+          <span class="case-thumb-sub">Крипто / Майнинг</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <span class="case-niche">Крипто / Майнинг B2B</span>
+        <div class="case-title">Get Asic — контент-воронка для майнинг-компании</div>
+        <div class="case-desc">YouTube-продакшн для продажи ASIC-майнеров. Воронка продаж через видеоконтент. Просмотры: 31 749 → 11,8 млн за год. Продажи: 11 → 58 устройств/мес.</div>
+      </div>
+      <div class="case-right">
+        <div class="case-metrics">
+          <div class="metric"><span class="metric-val">11.8M</span><span class="metric-label">просмотров</span></div>
+          <div class="metric"><span class="metric-val">×5</span><span class="metric-label">продажи/мес</span></div>
+        </div>
+        <span class="case-link-btn">Смотреть канал</span>
+      </div>
+    </a>
+
+    <!-- Case 3: Движ в Недвижке -->
+    <a class="case-row reveal" href="https://www.youtube.com/@dvizhvnedvizhke" target="_blank" rel="noopener">
+      <div class="case-thumb">
+        <img src="case-dvizh.jpg" alt="Движ в Недвижке" onerror="this.style.display='none'; this.nextElementSibling.style.background='linear-gradient(160deg,#1a0808,#3a1010)'">
+        <div class="case-thumb-vignette"></div>
+        <div class="case-thumb-inner">
+          <span class="case-thumb-name">Движ в Недвижке</span>
+          <span class="case-thumb-sub">Недвижимость</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <span class="case-niche">Недвижимость / KN.RU</span>
+        <div class="case-title">Движ в Недвижке — 66 800 подписчиков и 563 видео</div>
+        <div class="case-desc">Продакшн для центра недвижимости KN.RU. Монтаж, обложки, форматирование под алгоритмы. Стабильные 2–6 тыс. просмотров на каждый ролик.</div>
+      </div>
+      <div class="case-right">
+        <div class="case-metrics">
+          <div class="metric"><span class="metric-val">66.8K</span><span class="metric-label">подписчиков</span></div>
+          <div class="metric"><span class="metric-val">563</span><span class="metric-label">видео</span></div>
+        </div>
+        <span class="case-link-btn">Смотреть канал</span>
+      </div>
+    </a>
+
+    <!-- Case 4: Реальный Крым -->
+    <a class="case-row reveal" href="https://www.youtube.com/@real_Crimea" target="_blank" rel="noopener">
+      <div class="case-thumb">
+        <img src="case-crimea.jpg" alt="Реальный Крым" onerror="this.style.display='none'; this.nextElementSibling.style.background='linear-gradient(160deg,#0a1520,#0d2235)'">
+        <div class="case-thumb-vignette"></div>
+        <div class="case-thumb-inner">
+          <span class="case-thumb-name">Реальный Крым</span>
+          <span class="case-thumb-sub">Lifestyle / Travel</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <span class="case-niche">Lifestyle / Travel</span>
+        <div class="case-title">Реальный Крым — вирусные ролики до 62 000 просмотров</div>
+        <div class="case-desc">Монтаж тревел-контента с высоким удержанием. Ролики набирают от 14 до 62 тысяч просмотров органически без рекламы. Продакшн под алгоритмы YouTube.</div>
+      </div>
+      <div class="case-right">
+        <div class="case-metrics">
+          <div class="metric"><span class="metric-val">62K</span><span class="metric-label">просмотров / ролик</span></div>
+          <div class="metric"><span class="metric-val">26.6x</span><span class="metric-label">коэф. вирусности</span></div>
+        </div>
+        <span class="case-link-btn">Смотреть канал</span>
+      </div>
+    </a>
+
+    <!-- Case 5: Анна Выровая -->
+    <a class="case-row reveal" href="https://www.youtube.com/@ПсихологонлайнАннаВыровая" target="_blank" rel="noopener">
+      <div class="case-thumb">
+        <img src="case-anna.jpg" alt="Анна Выровая" onerror="this.style.display='none'; this.nextElementSibling.style.background='linear-gradient(160deg,#1a1020,#2a1535)'">
+        <div class="case-thumb-vignette"></div>
+        <div class="case-thumb-inner">
+          <span class="case-thumb-name">Анна Выровая</span>
+          <span class="case-thumb-sub">Психология</span>
+        </div>
+      </div>
+      <div class="case-body">
+        <span class="case-niche">Психология / Личный бренд</span>
+        <div class="case-title">Анна Выровая — серебряная кнопка YouTube с нуля</div>
+        <div class="case-desc">Выстроили YouTube-канал психолога до серебряной кнопки (100K+ подписчиков). Задача закрыта: сформирована постоянная клиентская база, клиент ушёл с рынка на своих условиях.</div>
+      </div>
+      <div class="case-right">
+        <div class="case-metrics">
+          <div class="metric"><span class="metric-val">100K+</span><span class="metric-label">подписчиков</span></div>
+          <div class="metric"><span class="metric-val">Silver</span><span class="metric-label">Play Button</span></div>
+        </div>
+        <span class="case-link-btn">Смотреть канал</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="packages" id="packages">
+  <div class="packages-header" style="display:block; margin-bottom:56px;">
+    <span class="section-tag reveal">Форматы работы</span>
+    <h2 class="reveal reveal-delay-1">Выбери<br>пакет</h2>
+    <p class="reveal reveal-delay-2" style="font-size:13px; font-weight:300; color:var(--text2); line-height:1.8; margin-top:16px;">
+      Не уверен какой подходит? Напиши — разберёмся вместе.
+    </p>
+  </div>
+
+  <div class="packages-grid">
+    <!-- Mini -->
+    <div class="pkg-card reveal">
+      <span class="pkg-tier">Tier 01</span>
+      <div class="pkg-name">Mini</div>
+      <div class="pkg-price-block">
+        <div class="pkg-price">8 000 <sup>₽</sup></div>
+        <div class="pkg-deadline">Срок: 7–10 рабочих дней</div>
+      </div>
+      <ul class="pkg-features">
+        <li class="active">Базовый монтаж до 20 мин</li>
+        <li class="active">Базовая обложка</li>
+        <li class="active">1 раунд правок</li>
+        <li>Цветокоррекция</li>
+        <li>Саунд-дизайн</li>
+        <li>Моушен-графика</li>
+        <li>Приоритетный срок</li>
+      </ul>
+      <a class="pkg-cta pkg-cta-outline" href="https://t.me/polyasmedia" target="_blank" rel="noopener">
+        Обсудить →
+      </a>
+    </div>
+
+    <!-- Standard -->
+    <div class="pkg-card featured reveal reveal-delay-1">
+      <span class="pkg-badge">Популярный</span>
+      <span class="pkg-tier">Tier 02</span>
+      <div class="pkg-name">Standard</div>
+      <div class="pkg-price-block">
+        <div class="pkg-price">15 000 <sup>₽</sup></div>
+        <div class="pkg-deadline">Срок: 3–5 рабочих дней</div>
+      </div>
+      <ul class="pkg-features">
+        <li class="active">Динамичный монтаж с эффектами</li>
+        <li class="active">Концепция видео</li>
+        <li class="active">Кликабельная обложка</li>
+        <li class="active">Цветокоррекция</li>
+        <li class="active">Саунд-дизайн</li>
+        <li class="active">3 раунда правок</li>
+        <li>Моушен-графика / инфографика</li>
+      </ul>
+      <a class="pkg-cta pkg-cta-filled" href="https://t.me/polyasmedia" target="_blank" rel="noopener">
+        Выбрать →
+      </a>
+    </div>
+
+    <!-- Premium -->
+    <div class="pkg-card reveal reveal-delay-2">
+      <span class="pkg-tier">Tier 03</span>
+      <div class="pkg-name">Premium</div>
+      <div class="pkg-price-block">
+        <div class="pkg-price">20 000 <sup>₽</sup></div>
+        <div class="pkg-deadline">Срок: 1–2 рабочих дня</div>
+      </div>
+      <ul class="pkg-features">
+        <li class="active">Премиум монтаж</li>
+        <li class="active">Моушен-дизайн &amp; инфографика</li>
+        <li class="active">Премиум обложка</li>
+        <li class="active">Цветокоррекция &amp; саунд-дизайн</li>
+        <li class="active">Разработка фирменного стиля</li>
+        <li class="active">Безлимит правок</li>
+        <li class="active">Полный приоритет</li>
+      </ul>
+      <a class="pkg-cta pkg-cta-outline" href="https://t.me/polyasmedia" target="_blank" rel="noopener">
+        Обсудить →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <p class="cta-eyebrow reveal">Готов к работе</p>
+  <h2 class="reveal reveal-delay-1">Давай<br>сделаем<br><span style="color:var(--accent)">результат</span></h2>
+  <p class="cta-sub reveal reveal-delay-2">
+    Напиши в Telegram — обсудим проект, формат и сроки.<br>Ответ в течение часа.
+  </p>
+  <div class="cta-actions reveal reveal-delay-3">
+    <a class="btn-tg" href="https://t.me/polyasmedia" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" style="width:18px;height:18px;flex-shrink:0;">
+        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/>
+      </svg>
+      Написать в Telegram
+    </a>
+    <a class="btn-yt" href="https://www.youtube.com/@polyasmedia" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;">
+        <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+      </svg>
+      YouTube канал
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <img src="logo.png" alt="Polyas Media" class="footer-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+    <span class="footer-logo-text" style="display:none">Polyas Media</span>
+    <p class="footer-copy">
+      Видеопродакшн &amp; медиа.<br>
+      Иван Исаков, 2024–2025.
+    </p>
+  </div>
+
+  <div class="footer-links">
+    <h4>Навигация</h4>
+    <ul>
+      <li><a href="#about">Обо мне</a></li>
+      <li><a href="#services">Услуги</a></li>
+      <li><a href="#cases">Кейсы</a></li>
+      <li><a href="#packages">Пакеты</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-contacts">
+    <h4>Контакты</h4>
+    <div class="contact-item">
+      <span class="contact-label">Telegram (личный)</span>
+      <a class="contact-value" href="https://t.me/polyasmedia" target="_blank" rel="noopener">@polyasmedia</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Telegram канал</span>
+      <a class="contact-value" href="https://t.me/mediapolyas" target="_blank" rel="noopener">@mediapolyas</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">YouTube</span>
+      <a class="contact-value" href="https://www.youtube.com/@polyasmedia" target="_blank" rel="noopener">@polyasmedia</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Email</span>
+      <a class="contact-value" href="mailto:polyasawen@icloud.com">polyasawen@icloud.com</a>
+    </div>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <span>© 2025 Polyas Media. Иван Исаков.</span>
+  <span>Видеопродакшн — YouTube — Моушен-дизайн</span>
+</div>
+
+<script>
+/* NAV */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+/* REVEAL */
+const revealEls = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }});
+}, { threshold: 0.1 });
+revealEls.forEach(el => revealObs.observe(el));
+
+/* SMOOTH ANCHOR */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+/* COUNTER */
+const countObs = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const text = el.textContent;
+    const num = parseInt(text);
+    if (!isNaN(num)) {
+      let t0 = null;
+      const dur = 1400;
+      const suffix = text.replace(/[0-9]/g, '').trim();
+      const run = (ts) => {
+        if (!t0) t0 = ts;
+        const p = Math.min((ts - t0) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.floor(ease * num) + suffix;
+        if (p < 1) requestAnimationFrame(run);
+        else el.textContent = text;
+      };
+      requestAnimationFrame(run);
+    }
+    countObs.unobserve(el);
+  });
+}, { threshold: 0.6 });
+document.querySelectorAll('.stat-num').forEach(el => countObs.observe(el));
+
+/* 3D PHOTO TILT */
+function init3DPhoto(wrap) {
+  const img = wrap.querySelector('img');
+  if (!img) return;
+  let raf = null, tX = 0, tY = 0, cX = 0, cY = 0;
+  wrap.addEventListener('mousemove', (ev) => {
+    const r = wrap.getBoundingClientRect();
+    tX = ((ev.clientX - r.left) / r.width - 0.5) * 18;
+    tY = -((ev.clientY - r.top) / r.height - 0.5) * 12;
+    if (!raf) tick();
+  });
+  wrap.addEventListener('mouseleave', () => { tX = 0; tY = 0; if (!raf) tick(); });
+  function tick() {
+    cX += (tX - cX) * 0.09;
+    cY += (tY - cY) * 0.09;
+    const sc = (Math.abs(cX) + Math.abs(cY)) > 0.3 ? 1.04 : 1;
+    img.style.transform = 'perspective(900px) rotateY(' + cX + 'deg) rotateX(' + cY + 'deg) scale(' + sc + ')';
+    const moving = Math.abs(tX - cX) > 0.02 || Math.abs(tY - cY) > 0.02;
+    if (moving) { raf = requestAnimationFrame(tick); }
+    else { raf = null; if (!tX && !tY) img.style.transform = ''; }
+  }
+}
+document.querySelectorAll('.hero-photo-wrap, .about-photo-wrap').forEach(init3DPhoto);
+
+/* MOUSE-FOLLOW GLOW */
+let gmx = window.innerWidth / 2, gmy = window.innerHeight / 2;
+let smx = gmx, smy = gmy;
+const glow1 = document.querySelector('.bg-glow-1');
+const glow3 = document.querySelector('.bg-glow-3');
+document.addEventListener('mousemove', ev => { gmx = ev.clientX; gmy = ev.clientY; });
+(function glowLoop() {
+  smx += (gmx - smx) * 0.035;
+  smy += (gmy - smy) * 0.035;
+  const dx = (smx - window.innerWidth / 2) * 0.15;
+  const dy = (smy - window.innerHeight / 2) * 0.15;
+  if (glow1) glow1.style.transform = 'translate(' + dx + 'px, ' + dy + 'px)';
+  if (glow3) glow3.style.transform = 'translate(' + (-dx * 0.5) + 'px, ' + (-dy * 0.5) + 'px)';
+  requestAnimationFrame(glowLoop);
+})();
+</script>
+
+</body>
+</html>
